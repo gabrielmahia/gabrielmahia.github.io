@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Gabriel Mahia — building decision infrastructure for under-resourced systems. Kenya civic tech, community platforms, and East African developer tools.">
+<meta property="og:title" content="Gabriel Mahia">
+<meta property="og:description" content="Building decision infrastructure for under-resourced systems.">
+<meta property="og:url" content="https://gabrielmahia.github.io">
+<title>Gabriel Mahia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne+Mono&family=Syne:wght@400;600;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink:     #0d1117;
+    --paper:   #f5f0e8;
+    --moss:    #2d4a2d;
+    --amber:   #c8860a;
+    --rust:    #8b3a2a;
+    --grid:    rgba(45,74,45,0.08);
+    --rule:    rgba(45,74,45,0.18);
+    --mono:    'Syne Mono', monospace;
+    --display: 'Syne', sans-serif;
+    --serif:   'Instrument Serif', serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--display);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+    /* Cartographic grid paper */
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px),
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 80px 80px, 80px 80px, 16px 16px, 16px 16px;
+  }
+
+  /* ── NAV ─────────────────────────────────────────────── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 2rem;
+    background: rgba(245,240,232,0.88);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .nav-coord {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--moss);
+    letter-spacing: 0.05em;
+  }
+  .nav-links { display: flex; gap: 2rem; }
+  .nav-links a {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink);
+    text-decoration: none;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+  }
+  .nav-links a:hover { opacity: 1; color: var(--moss); }
+
+  /* ── HERO ─────────────────────────────────────────────── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 8rem 2rem 4rem;
+    max-width: 1100px; margin: 0 auto;
+    position: relative;
+  }
+
+  .hero-tag {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--moss);
+    margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .hero-tag::before {
+    content: '';
+    display: block; width: 2rem; height: 1px;
+    background: var(--moss);
+  }
+
+  .hero h1 {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(3rem, 8vw, 6.5rem);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--moss);
+    display: block;
+  }
+
+  .hero-desc {
+    font-family: var(--serif);
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    font-style: italic;
+    color: var(--ink);
+    opacity: 0.72;
+    max-width: 580px;
+    margin-bottom: 3rem;
+    line-height: 1.55;
+  }
+
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  .btn {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 0.85rem 1.75rem;
+    border: 1.5px solid var(--ink);
+    color: var(--ink);
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .btn::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: var(--moss);
+    transform: translateY(100%);
+    transition: transform 0.2s;
+    z-index: -1;
+  }
+  .btn:hover { color: var(--paper); border-color: var(--moss); }
+  .btn:hover::after { transform: translateY(0); }
+  .btn.solid {
+    background: var(--ink); color: var(--paper);
+  }
+  .btn.solid::after { background: var(--moss); }
+  .btn.solid:hover { border-color: var(--moss); }
+
+  /* Decorative coordinate label */
+  .hero-coords {
+    position: absolute; bottom: 2rem; right: 2rem;
+    font-family: var(--mono); font-size: 0.65rem;
+    color: var(--moss); opacity: 0.5;
+    text-align: right; line-height: 1.8;
+  }
+
+  /* ── SECTION SHARED ──────────────────────────────────── */
+  section {
+    max-width: 1100px; margin: 0 auto;
+    padding: 5rem 2rem;
+  }
+  .section-label {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--moss);
+    margin-bottom: 0.5rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .section-label::before {
+    content: ''; display: block;
+    width: 1.5rem; height: 1px; background: var(--moss);
+  }
+  .section-label span { opacity: 0.5; }
+  h2 {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(2rem, 4vw, 3rem);
+    letter-spacing: -0.02em;
+    margin-bottom: 3rem;
+    line-height: 1.05;
+  }
+
+  /* ── RULE DIVIDER ────────────────────────────────────── */
+  .rule {
+    width: 100%; height: 1px;
+    background: var(--rule);
+    max-width: 1100px; margin: 0 auto;
+  }
+
+  /* ── TOOLS GRID ──────────────────────────────────────── */
+  .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    margin-top: 3rem;
+  }
+  .tool-card {
+    background: var(--paper);
+    padding: 1.8rem;
+    transition: background 0.2s;
+    position: relative;
+  }
+  .tool-card:hover { background: rgba(45,74,45,0.04); }
+  .tool-tag {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--moss);
+    margin-bottom: 0.75rem;
+    opacity: 0.7;
+  }
+  .tool-name {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 1.05rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+  }
+  .tool-sw {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    color: var(--moss);
+    margin-bottom: 0.6rem;
+    opacity: 0.6;
+  }
+  .tool-desc {
+    font-size: 0.85rem;
+    opacity: 0.65;
+    line-height: 1.55;
+    margin-bottom: 1.2rem;
+  }
+  .tool-link {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--moss);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 1px;
+    transition: border-color 0.2s;
+  }
+  .tool-link:hover { border-color: var(--moss); }
+
+  /* Category headers in grid */
+  .tool-category {
+    grid-column: 1 / -1;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 0.6rem 1.8rem;
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    opacity: 0.9;
+  }
+
+  /* ── STACK / ABOUT ───────────────────────────────────── */
+  .about-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+  .about-text {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    font-style: italic;
+    line-height: 1.7;
+    opacity: 0.8;
+  }
+  .about-text p + p { margin-top: 1.2rem; }
+  .stack-list {
+    list-style: none;
+    border-top: 1px solid var(--rule);
+  }
+  .stack-list li {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 1rem;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid var(--rule);
+    font-size: 0.85rem;
+  }
+  .stack-list .k {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--moss);
+    opacity: 0.65;
+    align-self: center;
+  }
+  .stack-list .v { opacity: 0.75; align-self: center; }
+
+  /* ── DEV TOOLS ───────────────────────────────────────── */
+  .devtools-row {
+    display: flex; flex-wrap: wrap; gap: 0.75rem;
+    margin-top: 2rem;
+  }
+  .devtool {
+    border: 1px solid var(--rule);
+    padding: 0.9rem 1.2rem;
+    font-size: 0.82rem;
+    transition: background 0.15s;
+  }
+  .devtool:hover { background: rgba(45,74,45,0.05); }
+  .devtool .dt-name {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--moss);
+    margin-bottom: 0.2rem;
+  }
+  .devtool .dt-desc { opacity: 0.6; font-size: 0.78rem; }
+
+  /* ── WRITING ─────────────────────────────────────────── */
+  .writing-posts {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    margin-top: 3rem;
+  }
+  .writing-post {
+    background: var(--paper);
+    padding: 1.8rem;
+    text-decoration: none; color: inherit;
+    transition: background 0.2s; display: block;
+  }
+  .writing-post:hover { background: rgba(45,74,45,0.04); }
+  .post-pub {
+    font-family: var(--mono); font-size: 0.62rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--amber); margin-bottom: 0.6rem;
+  }
+  .post-title {
+    font-family: var(--display); font-weight: 700;
+    font-size: 0.98rem; line-height: 1.3; margin-bottom: 0.5rem;
+  }
+  .post-lead { font-size: 0.82rem; opacity: 0.6; line-height: 1.5; }
+
+  /* ── CONTACT ─────────────────────────────────────────── */
+  .contact-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+    align-items: start;
+  }
+  .contact-cta {
+    font-family: var(--serif); font-style: italic;
+    font-size: 1.3rem; line-height: 1.6; opacity: 0.8;
+    margin-bottom: 2rem;
+  }
+  .contact-links { display: flex; flex-direction: column; gap: 0.5rem; }
+  .contact-link {
+    font-family: var(--mono); font-size: 0.75rem;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--ink); text-decoration: none;
+    padding: 0.8rem 0; border-bottom: 1px solid var(--rule);
+    display: flex; align-items: center; justify-content: space-between;
+    transition: color 0.2s;
+  }
+  .contact-link:hover { color: var(--moss); }
+  .contact-link span { opacity: 0.4; font-size: 0.65rem; }
+
+  /* Identity block */
+  .identity-box {
+    border: 1px solid var(--rule);
+    padding: 2rem;
+  }
+  .identity-name {
+    font-family: var(--display); font-weight: 800;
+    font-size: 1.5rem; letter-spacing: -0.02em;
+    margin-bottom: 0.3rem;
+  }
+  .identity-role {
+    font-family: var(--mono); font-size: 0.7rem;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--moss); opacity: 0.7; margin-bottom: 1.5rem;
+  }
+  .identity-stats {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem;
+    margin-top: 1.5rem; border-top: 1px solid var(--rule); padding-top: 1.5rem;
+  }
+  .stat-val {
+    font-family: var(--mono); font-size: 1.6rem; font-weight: 600;
+    color: var(--moss); display: block;
+  }
+  .stat-lbl {
+    font-size: 0.7rem; opacity: 0.5; text-transform: uppercase;
+    letter-spacing: 0.08em; font-family: var(--mono);
+  }
+
+  /* ── FOOTER ──────────────────────────────────────────── */
+  footer {
+    border-top: 1px solid var(--rule);
+    padding: 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    max-width: 1100px; margin: 0 auto;
+    font-family: var(--mono); font-size: 0.65rem;
+    letter-spacing: 0.08em; opacity: 0.45;
+  }
+
+  /* ── RESPONSIVE ──────────────────────────────────────── */
+  @media (max-width: 768px) {
+    nav { padding: 0.75rem 1rem; }
+    .nav-links { gap: 1.2rem; }
+    .hero { padding: 6rem 1.25rem 3rem; }
+    section { padding: 3.5rem 1.25rem; }
+    .about-cols, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .hero-coords { display: none; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+
+  /* ── ANIMATIONS ──────────────────────────────────────── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero-tag  { animation: fadeUp 0.6s ease both; }
+  .hero h1   { animation: fadeUp 0.6s 0.1s ease both; }
+  .hero-desc { animation: fadeUp 0.6s 0.2s ease both; }
+  .hero-actions { animation: fadeUp 0.6s 0.3s ease both; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-coord">−1.2921° N · 36.8219° E</div>
+  <div class="nav-links">
+    <a href="#tools">Tools</a>
+    <a href="#about">About</a>
+    <a href="#devtools">Open source</a>
+    <a href="#writing">Writing</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">Engineer · Nairobi → Diaspora</div>
+  <h1>Gabriel<em>Mahia</em></h1>
+  <p class="hero-desc">
+    Building decision infrastructure for under-resourced systems —
+    civic tools, community platforms, and developer primitives
+    for East Africa and its diaspora.
+  </p>
+  <div class="hero-actions">
+    <a href="#tools" class="btn solid">View portfolio</a>
+    <a href="https://github.com/gabrielmahia" class="btn" target="_blank" rel="noopener">GitHub</a>
+    <a href="#contact" class="btn">Get in touch</a>
+  </div>
+  <div class="hero-coords">
+    GABRIELMAHIA.GITHUB.IO<br>
+    PORTFOLIO · 2026<br>
+    12 DEPLOYED TOOLS
+  </div>
+</div>
+
+<div class="rule"></div>
+
+<!-- TOOLS -->
+<section id="tools">
+  <div class="section-label"><span>01</span> Deployed platforms</div>
+  <h2>Tools that<br>do real work.</h2>
+
+  <div class="tools-grid">
+
+    <div class="tool-category">— Civic &amp; Government Intelligence</div>
+
+    <div class="tool-card">
+      <div class="tool-tag">Flood · Infrastructure</div>
+      <div class="tool-name">Mafuriko — FloodWatch Kenya</div>
+      <div class="tool-sw">floodwatch-kenya.streamlit.app</div>
+      <div class="tool-desc">Urban flood resilience intelligence across 25 Kenyan cities. Incident maps, policy enforcement gaps, ranked action briefs for county governments.</div>
+      <a href="https://floodwatch-kenya.streamlit.app" class="tool-link" target="_blank" rel="noopener">Launch app →</a>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-tag">Parliament · Accountability</div>
+      <div class="tool-name">Macho ya Wananchi — Civic Decoder</div>
+      <div class="tool-sw">civic-decoder.streamlit.app</div>
+      <div class="tool-desc">MP tracker, bill tracker, and CDF watchdog for Kenya's 13th Parliament. Attendance, questions, constituency fund absorption.</div>
+      <a href="https://civic-decoder.streamlit.app" class="tool-link" target="_blank" rel="noopener">Launch app →</a>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-tag">Budget · Counties</div>
+      <div class="tool-name">Hesabu — Budget Sentinel</div>
+      <div class="tool-sw">budget-sentinel.streamlit.app</div>
+      <div class="tool-desc">County development fund absorption tracker across 46 counties. Controller of Budget FY2022/23 data. Identifies unspent billions and enforcement gaps.</div>
+      <a href="https://budget-sentinel.streamlit.app" class="tool-link" target="_blank" rel="noopener">Launch app →</a>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-tag">Land · Rivers · Law</div>
+      <div class="tool-name">Hifadhi — LandWatch Kenya</div>
+      <div class="tool-sw">hifadhi.streamlit.app</div>
+      <div class="tool-desc">Riparian encroachment mapper. Water Act 2016 compliance. NEMA and WRMA enforcement data. Shows the structural cause of Kenya's urban floods.</div>
+      <a href="https://hifadhi.streamlit.app" class="tool-link" target="_blank" rel="noopener">Launch app →</a>
+    </div>
+
+    <div class="tool-category">— Agricultural &amp; Climate Intelligence</div>
+
+    <div class="tool-card">
+      <div class="tool-tag">Water · Drought · SMS</div>
+      <div class="tool-name">WapiMaji — OpenResilience</div>
+      <div class="tool-sw">wapimaji.streamlit.app</div>
+      <div class="tool-desc">Water and drought intelligence for all 47 Kenyan counties. Serves farmers on basic phones via SMS. English and Kiswahili alerts.</div>
+      <a href="https://wapimaji.streamlit.app" class="tool-link" target="_blank" rel="noopener">Launch app →</a>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-tag">Crops · Markets · WFP</div>
+      <div class="tool-name">JuaMazao — Mazao Intel</div>
+      <div class="tool-sw">mazao-intel.streamlit.app</div>
+      <div class="tool-desc">Kenya crop price intelligence from WFP/HDX live data. Market comparisons, price spike detection, planting decision support for smallholder farmers.</div>
+      <a href="https://mazao-intel.streamlit.app" class="tool-link" target="_blank" rel="noopener">Launch app →</a>
+    </div>
+
+    <div class="tool-category">— Financial Tools</div>
+
+    <div class="tool-card">
+      <div class="tool-tag">Remittances · Diaspora</div>
+      <div class="tool-name">Peleka — RemitLens</div>
+      <div class="tool-sw">remit-lens.streamlit.app</div>
+      <div class="tool-desc">True cost comparison for sending money to Kenya — fee plus exchange rate spread. USD, GBP, EUR, CAD, AUD, AED corridors. Live mid-market rates.</div>
+      <a href="https://remit-lens.streamlit.app" class="tool-link" target="_blank" rel="noopener">Launch app →</a>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-tag">SACCOs · SASRA 2023</div>
+      <div class="tool-name">ChaguaSacco — SACCO Scout</div>
+      <div class="tool-sw">sacco-scout.streamlit.app</div>
+      <div class="tool-desc">Compare Kenya's deposit-taking SACCOs on dividends, loan rates, NPFL ratios, and capital adequacy. SASRA Annual Supervision Report 2023.</div>
+      <a href="https://sacco-scout.streamlit.app" class="tool-link" target="_blank" rel="noopener">Launch app →</a>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-tag">Chama · M-Pesa</div>
+      <div class="tool-name">Hela — Chama Manager</div>
+      <div class="tool-sw">hela.streamlit.app</div>
+      <div class="tool-desc">Digital management for Kenya's rotating savings groups. Members, contributions, loans, fines — with M-Pesa receipt tracking and Google Sheets persistence.</div>
+      <a href="https://hela.streamlit.app" class="tool-link" target="_blank" rel="noopener">Launch app →</a>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-tag">Macro · Trade · IWT</div>
+      <div class="tool-name">Msimamo — Quantum Maestro</div>
+      <div class="tool-sw">quantum-maestro.streamlit.app</div>
+      <div class="tool-desc">Multi-algorithm trade analysis terminal. 15+ technical indicators, VIX regime classification, IWT scoring framework. Educational simulation — not financial advice.</div>
+      <a href="https://quantum-maestro.streamlit.app" class="tool-link" target="_blank" rel="noopener">Launch app →</a>
+    </div>
+
+    <div class="tool-category">— Community Platforms</div>
+
+    <div class="tool-card">
+      <div class="tool-tag">Parish · Diaspora · M-Pesa</div>
+      <div class="tool-name">Jumuia — Catholic Network Tools</div>
+      <div class="tool-sw">catholicparishsteward.streamlit.app</div>
+      <div class="tool-desc">Pastoral OS for parishes worldwide. AI multilingual assistant, sacramental records, global parish finder via OpenStreetMap, M-Pesa giving, USSD access.</div>
+      <a href="https://catholicparishsteward.streamlit.app" class="tool-link" target="_blank" rel="noopener">Launch app →</a>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-tag">Alumni · KCSE · Mentorship</div>
+      <div class="tool-name">Dagoretti Community Hub</div>
+      <div class="tool-sw">dagoretti-community-hub.streamlit.app</div>
+      <div class="tool-desc">Alumni atlas, KCSE tracker, career pathways, mentorship directory, and Class of 2000 memory wall for Dagoretti High School and its diaspora.</div>
+      <a href="https://dagoretti-community-hub.streamlit.app" class="tool-link" target="_blank" rel="noopener">Launch app →</a>
+    </div>
+
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label"><span>02</span> About</div>
+  <h2>The diaspora<br>as a lens.</h2>
+  <div class="about-cols">
+    <div>
+      <p class="about-text">
+        I grew up in Nairobi. I now build from the diaspora —
+        which gives you a particular kind of clarity about what's missing
+        and what's possible. The tools I build are not charity.
+        They're infrastructure bets on systems that already have everything
+        they need except legibility.
+      </p>
+      <p class="about-text" style="margin-top:1.2rem">
+        County governments that can't see where their budgets go.
+        Farmers who know the rains are late but can't get an alert.
+        Parishes on three continents with no shared record of who was baptised.
+        Chamas running on WhatsApp and trust.
+        The problem is never the people — it's the missing layer between them and their data.
+      </p>
+      <p class="about-text" style="margin-top:1.2rem">
+        I also write. <a href="https://americansandtheirthings.com" style="color:var(--moss)">Americans and Their Things</a>
+        is a long-running field observation on American consumer culture
+        through an immigrant's eye — because the outside view is always
+        where the interesting analysis lives.
+      </p>
+    </div>
+    <ul class="stack-list">
+      <li><span class="k">Primary stack</span><span class="v">Python, Streamlit, FastAPI</span></li>
+      <li><span class="k">Payments</span><span class="v">M-Pesa Daraja, MCP tooling</span></li>
+      <li><span class="k">Comms</span><span class="v">Africa's Talking, USSD, SMS</span></li>
+      <li><span class="k">Data</span><span class="v">SQLite, Supabase, Google Sheets</span></li>
+      <li><span class="k">Maps</span><span class="v">Folium, OpenStreetMap, Overpass</span></li>
+      <li><span class="k">AI</span><span class="v">Gemini, MCP servers, FastMCP</span></li>
+      <li><span class="k">Infra</span><span class="v">Streamlit Cloud, GitHub Actions</span></li>
+      <li><span class="k">Focus</span><span class="v">East Africa, diaspora, civic tech</span></li>
+      <li><span class="k">Approach</span><span class="v">Opacity reduction, coordination</span></li>
+    </ul>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- DEV TOOLS -->
+<section id="devtools">
+  <div class="section-label"><span>03</span> Open source</div>
+  <h2>Developer<br>primitives.</h2>
+  <p style="opacity:0.6;max-width:560px;font-size:0.92rem;line-height:1.65">
+    Reusable building blocks for the East African developer stack —
+    packaged, documented, and designed to compose.
+  </p>
+  <div class="devtools-row">
+    <div class="devtool">
+      <div class="dt-name">mpesa-mcp</div>
+      <div class="dt-desc">MCP server for M-Pesa Daraja &amp; Africa's Talking. STK Push, SMS, airtime for AI agents.</div>
+    </div>
+    <div class="devtool">
+      <div class="dt-name">mpesa-python</div>
+      <div class="dt-desc">Production Python SDK for Safaricom Daraja v3. Zero magic, full type coverage.</div>
+    </div>
+    <div class="devtool">
+      <div class="dt-name">kenya-sms</div>
+      <div class="dt-desc">Africa's Talking SMS wrapper. Bilingual EN/SW templates, delivery receipts.</div>
+    </div>
+    <div class="devtool">
+      <div class="dt-name">daraja-mock</div>
+      <div class="dt-desc">Local M-Pesa Daraja v3 test server. No sandbox registration required.</div>
+    </div>
+    <div class="devtool">
+      <div class="dt-name">pesa-cli</div>
+      <div class="dt-desc">CLI for M-Pesa Daraja v3 — STK Push, B2C, balance, config.</div>
+    </div>
+    <div class="devtool">
+      <div class="dt-name">kenya-counties</div>
+      <div class="dt-desc">Kenya's 47 counties — IEBC codes, capitals, regions, 2019 KNBS populations.</div>
+    </div>
+    <div class="devtool">
+      <div class="dt-name">chama-api</div>
+      <div class="dt-desc">FastAPI REST service for chama management. CRUD for members, contributions, loans.</div>
+    </div>
+    <div class="devtool">
+      <div class="dt-name">nairobi-stack</div>
+      <div class="dt-desc">Engineering guide for East African software — M-Pesa, USSD, SMS, regulatory landscape.</div>
+    </div>
+  </div>
+  <div style="margin-top:2rem">
+    <a href="https://github.com/gabrielmahia" class="btn" target="_blank" rel="noopener">View all on GitHub →</a>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- WRITING -->
+<section id="writing">
+  <div class="section-label"><span>04</span> Writing</div>
+  <h2>Field<br>observations.</h2>
+  <div class="writing-posts">
+    <a href="https://americansandtheirthings.com" class="writing-post" target="_blank" rel="noopener">
+      <div class="post-pub">Americans and Their Things · Ongoing</div>
+      <div class="post-title">Field observations on American consumer culture through an immigrant's eye</div>
+      <div class="post-lead">What objects reveal about identity, aspiration, and the quiet rituals of a society that makes everything into a product.</div>
+    </a>
+    <a href="https://dev.to/gabrielmahia" class="writing-post" target="_blank" rel="noopener">
+      <div class="post-pub">Dev.to · Technical</div>
+      <div class="post-title">Why M-Pesa, Africa's Talking, and USSD are missing from AI agent tooling</div>
+      <div class="post-lead">And what I did about it: building MCP servers for the East African fintech stack.</div>
+    </a>
+    <a href="https://github.com/gabrielmahia/nairobi-stack" class="writing-post" target="_blank" rel="noopener">
+      <div class="post-pub">Nairobi Stack · Engineering guide</div>
+      <div class="post-title">The engineering guide for building software products in East Africa</div>
+      <div class="post-lead">M-Pesa integration, USSD patterns, SMS infrastructure, regulatory landscape, mobile-first UX.</div>
+    </a>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label"><span>05</span> Contact</div>
+  <h2>Let's build<br>something.</h2>
+  <div class="contact-grid">
+    <div>
+      <p class="contact-cta">
+        Open to collaboration with NGOs, county governments, diaspora organisations,
+        and developers building for East Africa. I'm particularly interested in
+        projects where the data problem is the hard problem.
+      </p>
+      <a href="mailto:contact@aikungfu.dev" class="btn solid">contact@aikungfu.dev</a>
+    </div>
+    <div>
+      <div class="identity-box">
+        <div class="identity-name">Gabriel Mahia</div>
+        <div class="identity-role">Engineer · Nairobi Stack</div>
+        <div class="contact-links">
+          <a href="https://github.com/gabrielmahia" class="contact-link" target="_blank" rel="noopener">
+            GitHub <span>gabrielmahia →</span>
+          </a>
+          <a href="https://aikungfu.dev" class="contact-link" target="_blank" rel="noopener">
+            Engineering blog <span>aikungfu.dev →</span>
+          </a>
+          <a href="https://americansandtheirthings.com" class="contact-link" target="_blank" rel="noopener">
+            Writing <span>americansandtheirthings.com →</span>
+          </a>
+          <a href="mailto:contact@aikungfu.dev" class="contact-link">
+            Email <span>contact@aikungfu.dev →</span>
+          </a>
+        </div>
+        <div class="identity-stats">
+          <div>
+            <span class="stat-val">12</span>
+            <span class="stat-lbl">Deployed tools</span>
+          </div>
+          <div>
+            <span class="stat-val">47</span>
+            <span class="stat-lbl">Counties covered</span>
+          </div>
+          <div>
+            <span class="stat-val">8</span>
+            <span class="stat-lbl">Dev packages</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>Gabriel Mahia · gabrielmahia.github.io</span>
+  <span>−1.2921° N · 36.8219° E · 2026</span>
+</footer>
+
+</body>
+</html>
