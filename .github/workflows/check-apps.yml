@@ -1,0 +1,58 @@
+name: Weekly app health check
+
+on:
+  schedule:
+    - cron: '0 7 * * 1'  # Monday 07:00 UTC, after portfolio update
+  workflow_dispatch:
+
+jobs:
+  ping:
+    name: Ping deployed apps
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check all Streamlit apps are responding
+        run: |
+          python3 - << 'EOF'
+          import urllib.request, urllib.error, time
+
+          APPS = [
+              ("Mafuriko", "https://floodwatch-kenya.streamlit.app"),
+              ("WapiMaji", "https://wapimaji.streamlit.app"),
+              ("Macho ya Wananchi", "https://civic-decoder.streamlit.app"),
+              ("JuaMazao", "https://mazao-intel.streamlit.app"),
+              ("ChaguaSacco", "https://sacco-scout.streamlit.app"),
+              ("Hesabu", "https://budget-sentinel.streamlit.app"),
+              ("Hifadhi", "https://hifadhi.streamlit.app"),
+              ("Hela", "https://hela.streamlit.app"),
+              ("Peleka", "https://remit-lens.streamlit.app"),
+              ("Msimamo", "https://quantum-maestro.streamlit.app"),
+              ("Jumuia", "https://catholicparishsteward.streamlit.app"),
+              ("Dagoretti", "https://dagoretti-community-hub.streamlit.app"),
+              ("Jibu", "https://jibu.streamlit.app"),
+              ("Nairobi Stack", "https://gabrielmahia.github.io/nairobi-stack"),
+              ("Portfolio", "https://gabrielmahia.github.io"),
+          ]
+
+          ok, warn, fail = [], [], []
+          for name, url in APPS:
+              try:
+                  req = urllib.request.Request(url, headers={"User-Agent": "portfolio-health/1.0"})
+                  with urllib.request.urlopen(req, timeout=20) as r:
+                      code = r.getcode()
+                  if code == 200:
+                      ok.append(name)
+                  else:
+                      warn.append(f"{name} ({code})")
+              except urllib.error.HTTPError as e:
+                  warn.append(f"{name} (HTTP {e.code})")
+              except Exception as e:
+                  fail.append(f"{name}: {str(e)[:40]}")
+              time.sleep(0.5)
+
+          print(f"\n✅ OK ({len(ok)}): {', '.join(ok)}")
+          if warn: print(f"⚠️  Warn ({len(warn)}): {', '.join(warn)}")
+          if fail: print(f"❌ Fail ({len(fail)}): {', '.join(fail)}")
+
+          if fail:
+              raise SystemExit(f"{len(fail)} apps unreachable")
+          EOF

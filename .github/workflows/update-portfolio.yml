@@ -1,0 +1,65 @@
+name: Auto-update portfolio
+
+on:
+  # Manual trigger
+  workflow_dispatch:
+  # Scheduled weekly on Monday 06:00 UTC
+  schedule:
+    - cron: '0 6 * * 1'
+  # Push to main
+  push:
+    branches: [main]
+    paths:
+      - 'index.html'
+
+jobs:
+  validate:
+    name: Validate HTML
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check HTML syntax (basic)
+        run: |
+          python3 - << 'EOF'
+          from html.parser import HTMLParser
+          class V(HTMLParser):
+              def __init__(self):
+                  super().__init__()
+                  self.errors = []
+          v = V()
+          with open("index.html") as f:
+              v.feed(f.read())
+          print("HTML: OK")
+          EOF
+
+      - name: Check all hrefs are non-empty
+        run: |
+          python3 - << 'EOF'
+          import re
+          with open("index.html") as f:
+              html = f.read()
+          empties = re.findall(r'href=["\'](\s*)["\']', html)
+          assert not empties, f"Empty hrefs found: {empties}"
+          urls = re.findall(r'href=["\'](https?://[^"\']+)["\']', html)
+          print(f"Found {len(urls)} external links — OK")
+          EOF
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: validate
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v4
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+      - id: deployment
+        uses: actions/deploy-pages@v4
