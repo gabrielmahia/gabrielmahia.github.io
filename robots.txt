@@ -1,0 +1,53 @@
+# gabrielmahia.github.io robots.txt
+# All content is CC BY-NC-ND 4.0 unless otherwise noted (see individual repo licenses)
+# Commercial scraping and AI training use is not permitted without written permission
+# Contact: contact@aikungfu.dev
+
+User-agent: *
+Allow: /
+
+# AI training crawlers — content is NOT licensed for AI training datasets
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /
+
+User-agent: cohere-ai
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: PerplexityBot
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+User-agent: Diffbot
+Disallow: /
+
+User-agent: FacebookBot
+Disallow: /
+
+# Allow legitimate search indexing
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+Sitemap: https://gabrielmahia.github.io/sitemap.xml
