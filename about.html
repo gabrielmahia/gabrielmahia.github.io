@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Gabriel Mahia — Systems engineer, AI architect, and institutional analyst. US Army veteran. Kenyan-born US citizen. Builder of decision infrastructure for East Africa."/>
+  <meta property="og:title" content="Gabriel Mahia — About"/>
+  <meta property="og:description" content="Systems engineer and AI architect. First to implement MCP, A2A, and Google ADK for East Africa. US Army veteran. Open to collaboration."/>
+  <meta property="og:url" content="https://gabrielmahia.github.io/about.html"/>
+  <title>About — Gabriel Mahia</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0d1117; --bg2: #161b22; --border: #21262d;
+      --ink: #e6edf3; --ink2: #8b949e; --amber: #d29922;
+      --green: #00A86B; --mono: 'JetBrains Mono', monospace;
+    }
+    body { background: var(--bg); color: var(--ink); font-family: 'Inter', sans-serif;
+           font-size: 16px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+    a { color: var(--green); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .wrap { max-width: 760px; margin: 0 auto; padding: 0 20px; }
+
+    /* NAV */
+    nav { border-bottom: 1px solid var(--border); padding: 14px 20px; display: flex;
+          align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+    .nav-brand { font-family: var(--mono); font-size: 14px; color: var(--ink); font-weight: 500; }
+    .nav-links { display: flex; gap: 20px; flex-wrap: wrap; }
+    .nav-links a { font-size: 13px; color: var(--ink2); }
+    .nav-links a:hover { color: var(--ink); }
+
+    /* HEADER */
+    .page-header { padding: 52px 0 36px; border-bottom: 1px solid var(--border); }
+    .eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: 2px;
+               text-transform: uppercase; color: var(--green); margin-bottom: 12px; }
+    h1 { font-size: clamp(1.8rem, 5vw, 2.6rem); font-weight: 700; line-height: 1.15;
+         letter-spacing: -0.03em; margin-bottom: 16px; }
+    .lede { font-size: 1.05rem; color: var(--ink2); max-width: 58ch; line-height: 1.75; margin-bottom: 24px; }
+    .contact-strip { display: flex; flex-wrap: wrap; gap: 10px; }
+    .contact-strip a { font-family: var(--mono); font-size: 12px; color: var(--ink2);
+                       border: 1px solid var(--border); border-radius: 4px; padding: 6px 12px;
+                       transition: all .15s; }
+    .contact-strip a:hover { border-color: var(--green); color: var(--green); text-decoration: none; }
+
+    /* SECTIONS */
+    section { padding: 36px 0; border-bottom: 1px solid var(--border); }
+    section:last-child { border-bottom: none; }
+    .sec-label { font-family: var(--mono); font-size: 10px; letter-spacing: 3px;
+                 text-transform: uppercase; color: var(--amber); margin-bottom: 20px; }
+    h2 { font-size: 1.15rem; font-weight: 600; margin-bottom: 6px; }
+    p { color: var(--ink2); margin-bottom: 12px; }
+    p:last-child { margin-bottom: 0; }
+
+    /* SKILLS GRID */
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+                   gap: 8px; margin-top: 4px; }
+    .skill-group { background: var(--bg2); border: 1px solid var(--border); border-radius: 6px;
+                   padding: 12px 14px; }
+    .skill-group-title { font-family: var(--mono); font-size: 10px; letter-spacing: 2px;
+                         text-transform: uppercase; color: var(--green); margin-bottom: 8px; display: block; }
+    .skill-group ul { list-style: none; }
+    .skill-group ul li { font-size: 13px; color: var(--ink2); padding: 2px 0; }
+
+    /* WORK HISTORY */
+    .role { margin-bottom: 28px; }
+    .role:last-child { margin-bottom: 0; }
+    .role-title { font-weight: 600; font-size: 1rem; color: var(--ink); }
+    .role-org { font-family: var(--mono); font-size: 12px; color: var(--amber); margin: 3px 0 8px; }
+    .role ul { padding-left: 18px; }
+    .role ul li { font-size: 14px; color: var(--ink2); margin-bottom: 4px; }
+
+    /* SELECTED BUILDS */
+    .builds { display: grid; gap: 10px; }
+    .build-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 6px;
+                  padding: 14px 16px; display: flex; justify-content: space-between;
+                  align-items: flex-start; flex-wrap: wrap; gap: 8px; }
+    .build-name { font-family: var(--mono); font-size: 13px; font-weight: 500; color: var(--ink); }
+    .build-desc { font-size: 13px; color: var(--ink2); margin-top: 4px; }
+    .build-meta { font-family: var(--mono); font-size: 10px; color: var(--green);
+                  border: 1px solid #00A86B33; padding: 2px 8px; border-radius: 10px; white-space: nowrap; }
+
+    /* STATS ROW */
+    .stats-row { display: flex; flex-wrap: wrap; gap: 0;
+                 border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+    .stat { padding: 14px 20px; flex: 1; min-width: 120px; border-right: 1px solid var(--border); }
+    .stat:last-child { border-right: none; }
+    .stat-n { font-family: var(--mono); font-size: 1.4rem; font-weight: 700;
+              color: var(--green); display: block; line-height: 1; margin-bottom: 4px; }
+    .stat-l { font-size: 11px; color: var(--ink2); letter-spacing: 0.5px; }
+
+    /* FOOTER */
+    footer { padding: 24px 0; border-top: 1px solid var(--border); margin-top: 16px; }
+    .foot-copy { font-family: var(--mono); font-size: 11px; color: var(--ink2); }
+
+    @media (max-width: 540px) {
+      .skills-grid { grid-template-columns: 1fr 1fr; }
+      .stat { min-width: 100px; padding: 12px 14px; }
+      .stat-n { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-brand">gabrielmahia</span>
+  <div class="nav-links">
+    <a href="index.html">Portfolio</a>
+    <a href="about.html">About</a>
+    <a href="https://www.gabrielmahia.com">Writing</a>
+    <a href="https://www.linkedin.com/in/gabrielmahia/" target="_blank" rel="noopener">LinkedIn ↗</a>
+    <a href="mailto:contact@aikungfu.dev">Contact</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <header class="page-header">
+    <div class="eyebrow">Systems Engineer · AI Architect · Institutional Analyst</div>
+    <h1>Gabriel Mahia</h1>
+    <p class="lede">US Army veteran and Kenyan-born US citizen building AI infrastructure for East Africa and the organisations that serve it. First engineer to implement all three major AI agent protocols — MCP, A2A, and Google ADK — for the region. 37 public repositories. 4,200+ PyPI downloads. Available for collaboration and contract work.</p>
+    <div class="contact-strip">
+      <a href="mailto:contact@aikungfu.dev">✉ contact@aikungfu.dev</a>
+      <a href="https://www.linkedin.com/in/gabrielmahia/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/gabrielmahia" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://pypi.org/user/gabrielmahia/" target="_blank" rel="noopener">PyPI</a>
+      <a href="https://www.gabrielmahia.com" target="_blank" rel="noopener">Writing</a>
+    </div>
+  </header>
+
+  <section>
+    <div class="sec-label">Traction</div>
+    <div class="stats-row">
+      <div class="stat">
+        <span class="stat-n">4,200+</span>
+        <span class="stat-l">PyPI downloads</span>
+      </div>
+      <div class="stat">
+        <span class="stat-n">37</span>
+        <span class="stat-l">Public repos</span>
+      </div>
+      <div class="stat">
+        <span class="stat-n">4</span>
+        <span class="stat-l">PyPI packages</span>
+      </div>
+      <div class="stat">
+        <span class="stat-n">13+</span>
+        <span class="stat-l">Org contributions</span>
+      </div>
+      <div class="stat">
+        <span class="stat-n">29</span>
+        <span class="stat-l">Deployed tools</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label">Technical Skills</div>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <span class="skill-group-title">AI / ML</span>
+        <ul>
+          <li>MCP (Model Context Protocol)</li>
+          <li>A2A (Agent-to-Agent)</li>
+          <li>Google ADK</li>
+          <li>LlamaIndex / RAG</li>
+          <li>CrewAI agents</li>
+          <li>Gemini REST API</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <span class="skill-group-title">Languages</span>
+        <ul>
+          <li>Python (primary)</li>
+          <li>PowerShell</li>
+          <li>JavaScript</li>
+          <li>SQL</li>
+          <li>Bash / shell</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <span class="skill-group-title">Infrastructure</span>
+        <ul>
+          <li>GitHub Actions CI/CD</li>
+          <li>Docker / Glama</li>
+          <li>PyPI packaging</li>
+          <li>Streamlit Cloud</li>
+          <li>Windows / WSL</li>
+          <li>BitLocker / security hardening</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <span class="skill-group-title">Data</span>
+        <ul>
+          <li>HuggingFace datasets</li>
+          <li>OpenStreetMap / Overpass</li>
+          <li>World Bank API</li>
+          <li>Kenya open data</li>
+          <li>pandas / numpy</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <span class="skill-group-title">Payments / APIs</span>
+        <ul>
+          <li>Safaricom M-Pesa / Daraja</li>
+          <li>Africa's Talking</li>
+          <li>REST API design</li>
+          <li>MCP server publishing</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <span class="skill-group-title">Domain</span>
+        <ul>
+          <li>East African civic systems</li>
+          <li>Institutional analysis</li>
+          <li>Diaspora finance</li>
+          <li>Health information systems</li>
+          <li>Agricultural intelligence</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label">Experience</div>
+
+    <div class="role">
+      <div class="role-title">Systems Engineer &amp; AI Architect</div>
+      <div class="role-org">Open Source · East African Civic Tech Portfolio · 2024–Present</div>
+      <ul>
+        <li>Built and published 4 PyPI packages (4,200+ downloads, 0 paid promotion)</li>
+        <li>First to implement MCP, A2A, and Google ADK protocols for East Africa</li>
+        <li>Deployed 29 AI-powered tools across civic accountability, health, finance, and diaspora services</li>
+        <li>Contributed to 13+ open-source organizations including Google ADK, LlamaIndex, CrewAI, CodeForAfrica</li>
+        <li>Architected bilingual (English/Kiswahili) AI systems serving Kenya's information access gap</li>
+      </ul>
+    </div>
+
+    <div class="role">
+      <div class="role-title">US Army — Combat Engineer (Sapper)</div>
+      <div class="role-org">United States Army · Service Completed</div>
+      <ul>
+        <li>Combat Engineering specialist — planning, execution, and coordination under pressure</li>
+        <li>Security clearance held during service</li>
+        <li>Cross-cultural operations experience in multi-national environments</li>
+      </ul>
+    </div>
+
+    <div class="role">
+      <div class="role-title">Institutional Analyst &amp; Writer</div>
+      <div class="role-org">gabrielmahia.com · The Systems Doctrine · 2019–Present</div>
+      <ul>
+        <li>700+ published essays on power, institutions, technology, and East African political economy</li>
+        <li>12-month field residency in Nairobi (April 2025–2026) covering Kenya's Gen Z governance crisis</li>
+        <li>Five-property publishing network across US and Kenya audiences</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label">Selected Builds</div>
+    <div class="builds">
+      <div class="build-card">
+        <div>
+          <div class="build-name"><a href="https://github.com/gabrielmahia/mpesa-mcp" target="_blank">mpesa-mcp</a></div>
+          <div class="build-desc">M-Pesa and Africa's Talking MCP server. 4,200+ PyPI downloads. Glama verified. Used by AI agents to access Kenya's dominant mobile payment rail.</div>
+        </div>
+        <span class="build-meta">4,200+ downloads</span>
+      </div>
+      <div class="build-card">
+        <div>
+          <div class="build-name"><a href="https://github.com/gabrielmahia/kenya-health-mcp" target="_blank">kenya-health-mcp</a></div>
+          <div class="build-desc">MCP server giving AI agents access to Kenya health system data — NHIF contributions, public facility registry, maternal health protocols, Article 43 rights EN/SW.</div>
+        </div>
+        <span class="build-meta">MIT · PyPI</span>
+      </div>
+      <div class="build-card">
+        <div>
+          <div class="build-name"><a href="https://github.com/gabrielmahia/kenya-a2a" target="_blank">kenya-a2a</a></div>
+          <div class="build-desc">First African A2A (Agent-to-Agent) protocol implementation. Multi-agent civic intelligence coordination for East African data sources.</div>
+        </div>
+        <span class="build-meta">First in Africa</span>
+      </div>
+      <div class="build-card">
+        <div>
+          <div class="build-name"><a href="https://github.com/gabrielmahia/kenya-adk" target="_blank">kenya-adk</a></div>
+          <div class="build-desc">First Google ADK implementation for East Africa. Discussed directly in the official Google ADK GitHub community.</div>
+        </div>
+        <span class="build-meta">First in Africa</span>
+      </div>
+      <div class="build-card">
+        <div>
+          <div class="build-name"><a href="https://afyaai.streamlit.app" target="_blank">AfyaAI</a></div>
+          <div class="build-desc">Kenya health AI — NHIF calculator, public hospital finder by county, maternal health guide, and Article 43 constitutional health rights in English and Kiswahili.</div>
+        </div>
+        <span class="build-meta">Live · Free</span>
+      </div>
+      <div class="build-card">
+        <div>
+          <div class="build-name"><a href="https://diasporaai.streamlit.app" target="_blank">DiasporaAI</a></div>
+          <div class="build-desc">US-Kenya dual-life navigator covering FBAR thresholds, remittance cost comparison, Kenya land investment from abroad, and dual citizenship process. Serves 3M+ Kenyan diaspora.</div>
+        </div>
+        <span class="build-meta">Live · Free</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label">Profile</div>
+    <h2>Background</h2>
+    <p>Kenyan-born US citizen and US Army veteran. Based in Baltimore, Maryland. Twelve months in Nairobi (April 2025–2026) embedded in Kenya's governance and civic technology environment during a period of significant institutional disruption — Gen Z-led accountability protests, a contested Tanzanian election, and a consequential year in US domestic policy, all read simultaneously from a position inside neither country.</p>
+    <p>The civic tech portfolio is the practical output of that vantage point: AI infrastructure that reduces information asymmetry for East African communities and their global diaspora. Everything is open-source, bilingual where it matters, and built for the constraints of the people it serves.</p>
+    <p>Available for collaboration, consulting engagements, and full-time roles in AI engineering, data infrastructure, or systems analysis — particularly where East African context, institutional knowledge, or cleared/security-sensitive environments are relevant.</p>
+  </section>
+
+</div>
+
+<div class="wrap">
+  <footer>
+    <span class="foot-copy">© 2026 Gabriel Mahia · contact@aikungfu.dev · <a href="index.html">Portfolio</a></span>
+  </footer>
+</div>
+
+</body>
+</html>
