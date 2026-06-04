@@ -1,464 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Gabriel Mahia — Systems &amp; Infrastructure Strategist. Operations administrator, Swahili linguist, and AI architect working at the intersection of U.S. federal infrastructure and East African operational environments."/>
-  <meta property="og:title" content="Gabriel Mahia — About"/>
-  <meta property="og:description" content="Systems and infrastructure strategist translating global standards into high-friction environments. Critical national infrastructure. Swahili-English. AI portfolio for East Africa."/>
-  <meta property="og:url" content="https://gabrielmahia.github.io/about.html"/>
-  <title>Gabriel Mahia — About</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --bg: #0d1117; --bg2: #161b22; --border: #21262d;
-      --ink: #e6edf3; --ink2: #8b949e; --amber: #d29922;
-      --green: #00A86B; --mono: 'JetBrains Mono', monospace;
-    }
-    body { background: var(--bg); color: var(--ink); font-family: 'Inter', sans-serif;
-           font-size: 16px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
-    a { color: var(--green); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    .wrap { max-width: 760px; margin: 0 auto; padding: 0 20px; }
-    nav { border-bottom: 1px solid var(--border); padding: 14px 20px;
-          display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
-    .nav-brand { font-family: var(--mono); font-size: 14px; color: var(--ink); font-weight: 500; }
-    .nav-links { display: flex; gap: 20px; flex-wrap: wrap; }
-    .nav-links a { font-size: 13px; color: var(--ink2); }
-    .nav-links a:hover { color: var(--ink); }
-    .page-header { padding: 52px 0 36px; border-bottom: 1px solid var(--border); }
-    .eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: 2px;
-               text-transform: uppercase; color: var(--green); margin-bottom: 12px; }
-    h1 { font-size: clamp(1.8rem, 5vw, 2.6rem); font-weight: 700; line-height: 1.15;
-         letter-spacing: -0.03em; margin-bottom: 16px; }
-    .lede { font-size: 1rem; color: var(--ink2); max-width: 60ch; line-height: 1.75; margin-bottom: 24px; }
-    .contact-strip { display: flex; flex-wrap: wrap; gap: 10px; }
-    .contact-strip a { font-family: var(--mono); font-size: 12px; color: var(--ink2);
-                       border: 1px solid var(--border); border-radius: 4px; padding: 6px 12px;
-                       transition: all .15s; }
-    .contact-strip a:hover { border-color: var(--green); color: var(--green); text-decoration: none; }
-    section { padding: 36px 0; border-bottom: 1px solid var(--border); }
-    section:last-child { border-bottom: none; }
-    .sec-label { font-family: var(--mono); font-size: 10px; letter-spacing: 3px;
-                 text-transform: uppercase; color: var(--amber); margin-bottom: 20px; }
-    p { color: var(--ink2); margin-bottom: 12px; }
-    p:last-child { margin-bottom: 0; }
-    .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
-                   gap: 8px; margin-top: 4px; }
-    .skill-group { background: var(--bg2); border: 1px solid var(--border); border-radius: 6px;
-                   padding: 12px 14px; }
-    .skill-group-title { font-family: var(--mono); font-size: 10px; letter-spacing: 2px;
-                         text-transform: uppercase; color: var(--green); margin-bottom: 8px; display: block; }
-    .skill-group ul { list-style: none; }
-    .skill-group ul li { font-size: 13px; color: var(--ink2); padding: 2px 0; }
-    .role { margin-bottom: 30px; padding-bottom: 30px; border-bottom: 1px solid var(--border); }
-    .role:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
-    .role-title { font-weight: 600; font-size: 1rem; color: var(--ink); margin-bottom: 2px; }
-    .role-org { font-family: var(--mono); font-size: 12px; color: var(--amber); margin-bottom: 4px; }
-    .role-date { font-family: var(--mono); font-size: 11px; color: var(--ink2); margin-bottom: 10px; }
-    .role ul { padding-left: 18px; }
-    .role ul li { font-size: 14px; color: var(--ink2); margin-bottom: 5px; line-height: 1.6; }
-    .builds { display: grid; gap: 10px; }
-    .build-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 6px;
-                  padding: 14px 16px; display: flex; justify-content: space-between;
-                  align-items: flex-start; flex-wrap: wrap; gap: 8px; }
-    .build-name { font-family: var(--mono); font-size: 13px; font-weight: 500; color: var(--ink); }
-    .build-desc { font-size: 13px; color: var(--ink2); margin-top: 4px; line-height: 1.55; }
-    .build-meta { font-family: var(--mono); font-size: 10px; color: var(--green);
-                  border: 1px solid rgba(0,168,107,0.3); padding: 2px 8px; border-radius: 10px; white-space: nowrap; }
-    .stats-row { display: flex; flex-wrap: wrap; gap: 0;
-                 border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
-    .stat { padding: 14px 20px; flex: 1; min-width: 110px; border-right: 1px solid var(--border); }
-    .stat:last-child { border-right: none; }
-    .stat-n { font-family: var(--mono); font-size: 1.4rem; font-weight: 700;
-              color: var(--green); display: block; line-height: 1; margin-bottom: 4px; }
-    .stat-l { font-size: 11px; color: var(--ink2); letter-spacing: 0.3px; }
-    .certs-list { display: flex; flex-wrap: wrap; gap: 8px; }
-    .cert { font-family: var(--mono); font-size: 11px; color: var(--ink2);
-            border: 1px solid var(--border); padding: 4px 10px; border-radius: 3px;
-            background: var(--bg2); }
-    .edu-row { margin-bottom: 16px; }
-    .edu-degree { font-weight: 600; font-size: 0.9rem; color: var(--ink); }
-    .edu-school { font-family: var(--mono); font-size: 11px; color: var(--amber); margin-top: 2px; }
-    .edu-year { font-family: var(--mono); font-size: 11px; color: var(--ink2); margin-top: 1px; }
-    .lang-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
-    .lang { font-size: 13px; color: var(--ink2); }
-    .lang-level { font-family: var(--mono); font-size: 10px; color: var(--amber); margin-left: 4px; }
-    footer { padding: 24px 0; border-top: 1px solid var(--border); margin-top: 16px; }
-    .foot-copy { font-family: var(--mono); font-size: 11px; color: var(--ink2); }
-    @media (max-width: 540px) {
-      .skills-grid { grid-template-columns: 1fr 1fr; }
-      .stat { min-width: 90px; padding: 10px 12px; }
-      .stat-n { font-size: 1.15rem; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Gabriel Mahia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#0d0d0d;--paper:#f5f0e8;--amber:#c8690a;--gold:#e8a020;--mid:#8a7d6b;--mono:'DM Mono',monospace;--serif:'DM Serif Display',serif;--sans:'Inter',sans-serif}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.6}
+nav{display:flex;align-items:center;justify-content:space-between;padding:24px 48px;border-bottom:1px solid rgba(0,0,0,0.08)}
+.logo{font-family:var(--serif);color:var(--amber)}
+nav a{color:var(--ink);text-decoration:none;font-size:0.85rem;opacity:0.6}
+nav a:hover{opacity:1}
+.about-hero{padding:80px 48px;max-width:800px;margin:0 auto}
+.about-kicker{font-family:var(--mono);font-size:0.72rem;color:var(--amber);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:16px}
+h1{font-family:var(--serif);font-size:3.5rem;line-height:1.1;margin-bottom:32px}
+.about-body p{font-size:1.05rem;line-height:1.8;margin-bottom:20px;color:#2d2d2d}
+.about-body strong{color:var(--amber)}
+.contact-strip{background:var(--ink);color:#fff;padding:48px;margin-top:64px;text-align:center}
+.contact-strip h2{font-family:var(--serif);font-size:2rem;color:#fff;margin-bottom:20px}
+.contact-links{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+.contact-links a{font-family:var(--mono);font-size:0.8rem;color:var(--gold);text-decoration:none;border:1px solid rgba(232,160,32,0.3);padding:8px 18px;border-radius:99px}
+.contact-links a:hover{background:var(--gold);color:#0d0d0d}
+</style>
 </head>
 <body>
-
 <nav>
-  <span class="nav-brand">gabrielmahia</span>
-  <div class="nav-links">
-    <a href="index.html">Portfolio</a>
-    <a href="about.html">About</a>
-    <a href="https://www.gabrielmahia.com" target="_blank" rel="noopener">Writing</a>
-    <a href="https://www.linkedin.com/in/gabrielmahia/" target="_blank" rel="noopener">LinkedIn</a>
-    <a href="mailto:contact@gabrielmahia.com">Contact</a>
-  </div>
+  <div class="logo">Gabriel Mahia</div>
+  <a href="index.html">← Back to Portfolio</a>
 </nav>
-
-<div class="wrap">
-
-  <header class="page-header">
-    <div class="eyebrow">Systems &amp; Infrastructure Strategist · Swahili–English · Washington DC–Baltimore</div>
-    <h1>Gabriel Mahia</h1>
-    <p class="lede">Operations analyst and systems strategist working at the fracture point between U.S. federal infrastructure and East African operational environments. Swahili–English linguist. Applied AI architect. Institutional analyst. Most professionals are trained in one environment. I function across both simultaneously — and I build the tools to prove it.</p>
-    <div class="contact-strip">
-      <a href="mailto:contact@gabrielmahia.com">✉ contact@gabrielmahia.com</a>
-      <a href="https://calendly.com/smiletelcom/consulting-call-ai-systems-east-africa" target="_blank" rel="noopener">📅 Consulting Call</a>
-      <a href="https://calendly.com/smiletelcom/portfolio-discussion" target="_blank" rel="noopener">🗂 Portfolio Discussion</a>
-      <a href="https://calendly.com/smiletelcom/speaking-interview-media" target="_blank" rel="noopener">🎙 Speaking / Media</a>
-      <a href="https://www.linkedin.com/in/gabrielmahia/" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="https://github.com/gabrielmahia" target="_blank" rel="noopener">GitHub</a>
-      <!-- SaccoAI -->
-      <a href="https://saccoai.streamlit.app" target="_blank" rel="noopener" class="project-card">
-        <div class="project-icon">💰</div>
-        <div class="project-info">
-          <h3>SaccoAI</h3>
-          <p>AI-powered chama &amp; SACCO management — merry-go-round schedules, table banking calculator, M-Pesa payment commands, AI advisor</p>
-          <div class="project-tags"><span>Streamlit</span><span>Kenya</span><span>Fintech</span></div>
-        </div>
-      </a>
-
-      <!-- SACCO Scout -->
-      <a href="https://chaguasacco.streamlit.app" target="_blank" rel="noopener" class="project-card">
-        <div class="project-icon">🏦</div>
-        <div class="project-info">
-          <h3>SACCO Scout</h3>
-          <p>Find and compare Kenya's 175+ SASRA-licensed deposit-taking SACCOs — real SASRA Annual Report data, health ratios, eligibility checker</p>
-          <div class="project-tags"><span>Streamlit</span><span>Kenya</span><span>SASRA</span></div>
-        </div>
-      </a>
-
-      <!-- kenya-agui -->
-      <a href="https://github.com/gabrielmahia/kenya-agui" target="_blank" rel="noopener" class="project-card">
-        <div class="project-icon">🔮</div>
-        <div class="project-info">
-          <h3>kenya-agui</h3>
-          <p>First East African AG-UI (Agent-User Interaction) protocol implementation — real-time AI streaming, generative UI, human-in-the-loop for civic data</p>
-          <div class="project-tags"><span>AG-UI</span><span>Protocol</span><span>East Africa</span></div>
-        </div>
-      </a>
-
-      <a href="https://www.gabrielmahia.com" target="_blank" rel="noopener">Writing</a>
-    </div>
-  </header>
-
-  <section>
-    <div class="sec-label">Open-Source Portfolio — May 2026</div>
-    <div class="stats-row">
-      <div class="stat">
-        <span class="stat-n">4,200+</span>
-        <span class="stat-l">PyPI downloads</span>
-      </div>
-      <div class="stat">
-        <span class="stat-n">37</span>
-        <span class="stat-l">Public repos</span>
-      </div>
-      <div class="stat">
-        <span class="stat-n">29</span>
-        <span class="stat-l">Deployed tools</span>
-      </div>
-      <div class="stat">
-        <span class="stat-n">4</span>
-        <span class="stat-l">PyPI packages</span>
-      </div>
-      <div class="stat">
-        <span class="stat-n">13+</span>
-        <span class="stat-l">Org contributions</span>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="sec-label">Technical Skills</div>
-    <div class="skills-grid">
-      <div class="skill-group">
-        <span class="skill-group-title">AI / ML</span>
-        <ul>
-          <li>Machine Learning</li>
-          <li>Deep Learning</li>
-          <li>Anomaly Detection</li>
-          <li>Statistical Modeling</li>
-          <li>MCP · A2A · Google ADK</li>
-          <li>LlamaIndex / RAG</li>
-          <li>CrewAI agents</li>
-        </ul>
-      </div>
-      <div class="skill-group">
-        <span class="skill-group-title">Systems / Infra</span>
-        <ul>
-          <li>Windows / Linux admin</li>
-          <li>High-availability systems</li>
-          <li>STIG / NIST hardening</li>
-          <li>Information Assurance</li>
-          <li>Disaster recovery</li>
-          <li>Proactive monitoring</li>
-        </ul>
-      </div>
-      <div class="skill-group">
-        <span class="skill-group-title">Security</span>
-        <ul>
-          <li>CompTIA Security+</li>
-          <li>Identity governance</li>
-          <li>Access control (least privilege)</li>
-          <li>Audit &amp; compliance</li>
-          <li>CBRN threat analysis</li>
-          <li>Hacking Forensic Investigator</li>
-        </ul>
-      </div>
-      <div class="skill-group">
-        <span class="skill-group-title">Engineering</span>
-        <ul>
-          <li>Python (primary)</li>
-          <li>PowerShell</li>
-          <li>GitHub Actions CI/CD</li>
-          <li>Docker · PyPI</li>
-          <li>Streamlit Cloud</li>
-          <li>REST API design</li>
-        </ul>
-      </div>
-      <div class="skill-group">
-        <span class="skill-group-title">Domain</span>
-        <ul>
-          <li>Critical national infrastructure</li>
-          <li>East African markets</li>
-          <li>Diaspora finance</li>
-          <li>Civic technology</li>
-          <li>Health informatics</li>
-          <li>Supply chain / logistics</li>
-        </ul>
-      </div>
-      <div class="skill-group">
-        <span class="skill-group-title">Languages</span>
-        <ul>
-          <li>Swahili — Native / Bilingual</li>
-          <li>English — Native</li>
-          <li>French — Limited working</li>
-          <li>Spanish — Limited working</li>
-          <li>Somali — Limited working</li>
-          <li>Urdu — Limited working</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="sec-label">Experience</div>
-
-    <div class="role">
-      <div class="role-title">Operations Systems Administrator — Critical National Infrastructure</div>
-      <div class="role-org">AT&amp;T</div>
-      <div class="role-date">November 2018 – Present · Washington DC–Baltimore Area</div>
-      <ul>
-        <li>Focal point for operational continuity in high-availability, access-controlled environments, maintaining 99.9% uptime for critical national infrastructure.</li>
-        <li>Administering high-availability Windows/Linux environments where uptime requirements are absolute.</li>
-        <li>Implementing Information Assurance protocols — bridging the gap between compliance policy and operational reality.</li>
-        <li>Collaborating with architecture teams to translate complex technical requirements into operational SOPs.</li>
-        <li>Structured the onboarding and technical training pipeline for new operators to reduce time-to-competence in high-friction environments.</li>
-      </ul>
-    </div>
-
-    <div class="role">
-      <div class="role-title">Swahili Linguist | Translator</div>
-      <div class="role-org">Ad Astra, Inc.</div>
-      <div class="role-date">October 2014 – Present · Washington DC Metro Area</div>
-      <ul>
-        <li>High-fidelity linguistic and cultural translation for legal, medical, and defense sectors.</li>
-        <li>Ensuring cultural interoperability — not just literal translation — between English and Swahili speakers in high-stakes environments.</li>
-        <li>Translating complex technical and legal concepts into accessible Swahili without loss of fidelity.</li>
-      </ul>
-    </div>
-
-    <div class="role">
-      <div class="role-title">Enterprise Systems Administrator</div>
-      <div class="role-org">CSRA Inc.</div>
-      <div class="role-date">March 2017 – March 2019 · Washington DC Metro Area</div>
-      <ul>
-        <li>Managed the operational backbone of federal enterprise infrastructure.</li>
-        <li>Designed logging and reporting frameworks to detect performance drift before failure.</li>
-        <li>Hardened systems to federal security standards (STIGs/NIST) without breaking operational functionality.</li>
-        <li>Managed the backup and recovery lifecycle, treating data integrity as the primary asset.</li>
-      </ul>
-    </div>
-
-    <div class="role">
-      <div class="role-title">Access Control</div>
-      <div class="role-org">Joint Improvised-Threat Defeat Organization (JIDO)</div>
-      <div class="role-date">September 2016 – July 2018 · Washington DC Metro Area</div>
-      <ul>
-        <li>Managed credentialing and physical access for sensitive facilities — enforcing least-privilege principle across hundreds of personnel.</li>
-        <li>Conducted red-team style audits of access logs to identify anomalies and potential insider threats.</li>
-        <li>Translated abstract security policies into concrete daily access procedures.</li>
-      </ul>
-    </div>
-
-    <div class="role">
-      <div class="role-title">Technical Operations Analyst</div>
-      <div class="role-org">CACI International</div>
-      <div class="role-date">September 2016 – March 2017 · Washington DC Metro Area</div>
-      <ul>
-        <li>Tier 2 escalation point for critical system failures requiring deep-dive root cause analysis.</li>
-        <li>Diagnosed complex hardware and network bottlenecks to minimize downtime for essential personnel.</li>
-        <li>Standardized troubleshooting documentation and runbooks to reduce time-to-resolution for recurring issues.</li>
-      </ul>
-    </div>
-
-    <div class="role">
-      <div class="role-title">CBRN Specialist</div>
-      <div class="role-org">U.S. Army</div>
-      <div class="role-date">November 2011 – April 2016 · Fort George G. Meade</div>
-      <ul>
-        <li>Managed Chemical, Biological, Radiological, and Nuclear defense systems — executing reconnaissance, surveillance, and decontamination protocols.</li>
-        <li>Advised command nodes on risk posture and translated complex environmental hazard data into actionable SOPs.</li>
-        <li>Managed lifecycle, accountability, and operational readiness of high-value tactical equipment to federal defense standards.</li>
-        <li>DLPT-certified in Swahili — provided ad-hoc cultural and translation capability for command teams.</li>
-      </ul>
-    </div>
-
-    <div class="role">
-      <div class="role-title">Team Lead — Market Strategy &amp; Business</div>
-      <div class="role-org">Onfon Media Limited</div>
-      <div class="role-date">June 2010 – May 2011 · Nairobi, Kenya</div>
-      <ul>
-        <li>Directed go-to-market strategy for Kenya's first mass-market web infrastructure provider.</li>
-        <li>Designed the customer acquisition engine that converted dormant leads into recurring revenue, exceeding growth targets.</li>
-        <li>Structured pricing models to balance affordability for local SMEs with firm profitability — solving early African tech adoption friction.</li>
-      </ul>
-    </div>
-
-    <div class="role">
-      <div class="role-title">Lecturer — Information Technology &amp; Systems</div>
-      <div class="role-org">Inoorero University (formerly Kenya School of Professional Studies)</div>
-      <div class="role-date">October 2005 – December 2007 · Nairobi, Kenya</div>
-      <ul>
-        <li>Designed and standardized foundational IT curriculum for early-career technologists.</li>
-        <li>Mentored the pre-M-Pesa generation of Kenyan technologists, bridging textbook theory and Nairobi operational reality.</li>
-      </ul>
-    </div>
-  </section>
-
-  <section>
-    <div class="sec-label">AI Portfolio — Selected Builds</div>
-    <div class="builds">
-      <div class="build-card">
-        <div>
-          <div class="build-name"><a href="https://github.com/gabrielmahia/mpesa-mcp" target="_blank">mpesa-mcp</a></div>
-          <div class="build-desc">MCP server giving AI agents access to M-Pesa and Africa's Talking. 4,200+ organic PyPI downloads. Verified on Glama MCP registry. First African MCP implementation.</div>
-        </div>
-        <span class="build-meta">4,200+ downloads</span>
-      </div>
-      <div class="build-card">
-        <div>
-          <div class="build-name"><a href="https://github.com/gabrielmahia/kenya-a2a" target="_blank">kenya-a2a</a></div>
-          <div class="build-desc">First African A2A (Agent-to-Agent) protocol implementation. Multi-agent coordination over East African civic data sources.</div>
-        </div>
-        <span class="build-meta">First in Africa</span>
-      </div>
-      <div class="build-card">
-        <div>
-          <div class="build-name"><a href="https://github.com/gabrielmahia/kenya-adk" target="_blank">kenya-adk</a></div>
-          <div class="build-desc">First Google ADK implementation for East Africa. Recognized in the official Google ADK developer community.</div>
-        </div>
-        <span class="build-meta">First in Africa</span>
-      </div>
-      <div class="build-card">
-        <div>
-          <div class="build-name"><a href="https://github.com/gabrielmahia/kenya-health-mcp" target="_blank">kenya-health-mcp</a></div>
-          <div class="build-desc">MCP server for Kenya health system data — NHIF contributions, public facility registry, maternal health protocols, and constitutional rights in English and Kiswahili.</div>
-        </div>
-        <span class="build-meta">MIT · PyPI</span>
-      </div>
-      <div class="build-card">
-        <div>
-          <div class="build-name"><a href="https://afyaai.streamlit.app" target="_blank">AfyaAI</a></div>
-          <div class="build-desc">Kenya health AI — NHIF calculator, public hospital finder, maternal health guide, Article 43 health rights in English and Kiswahili. Free, bilingual, mobile-first.</div>
-        </div>
-        <span class="build-meta">Live</span>
-      </div>
-      <div class="build-card">
-        <div>
-          <div class="build-name"><a href="https://diasporaai.streamlit.app" target="_blank">DiasporaAI</a></div>
-          <div class="build-desc">US-Kenya dual-life navigator — remittance cost comparison, Kenya land investment from abroad, dual citizenship process, FBAR thresholds. Serves 3M+ Kenyan diaspora.</div>
-        </div>
-        <span class="build-meta">Live</span>
-      </div>
-      <div class="build-card">
-        <div>
-          <div class="build-name"><a href="https://floodwatch-kenya.streamlit.app" target="_blank">FloodWatch Kenya</a></div>
-          <div class="build-desc">Real-time flood risk monitoring for all 47 Kenya counties. Aggregates satellite rainfall data, river gauge readings, and NDOC incident reports. Built for NGOs, county emergency offices, and farmers — free, no subscription required. The early-warning gap in Kenya is not data. It is the last mile.</div>
-        </div>
-        <span class="build-meta">Live · 47 counties</span>
-      </div>
-      <div class="build-card">
-        <div>
-          <div class="build-name"><a href="https://helaismoney.streamlit.app" target="_blank">HelaIsMoney</a></div>
-          <div class="build-desc">AI-assisted coordination layer for Kenya's 300,000+ chamas (informal savings groups). Tracks M-Pesa contributions, loan disbursements, interest cycles, and member standing — translating chama trust logic into auditable records. Bilingual EN/SW. No bank account required.</div>
-        </div>
-        <span class="build-meta">Live · Bilingual</span>
-      </div>
-    </div>
-    <p style="margin-top:16px; font-size:13px;">Full portfolio → <a href="index.html">gabrielmahia.github.io</a></p>
-  </section>
-
-  <section>
-    <div class="sec-label">Education</div>
-    <div class="edu-row">
-      <div class="edu-degree">Master of Business Administration — Strategy &amp; Marketing</div>
-      <div class="edu-school">University of Nairobi</div>
-      <div class="edu-year">2007 – 2010</div>
-    </div>
-    <div class="edu-row">
-      <div class="edu-degree">Bachelor of Science — Information Technology</div>
-      <div class="edu-school">Jomo Kenyatta University of Agriculture and Technology</div>
-      <div class="edu-year">2002 – 2005</div>
-    </div>
-    <div class="edu-row">
-      <div class="edu-degree">Certification — Hacking Forensic Investigator</div>
-      <div class="edu-school">George Mason University</div>
-      <div class="edu-year">2013 – 2014</div>
-    </div>
-    <div class="edu-row">
-      <div class="edu-degree">Certifications — Information Assurance</div>
-      <div class="edu-school">Defense Acquisition University</div>
-    </div>
-  </section>
-
-  <section>
-    <div class="sec-label">Certifications</div>
-    <div class="certs-list">
-      <span class="cert">CompTIA Security+</span>
-      <span class="cert">Deep Learning Specialization</span>
-      <span class="cert">Machine Learning</span>
-      <span class="cert">Hacking Forensic Investigator</span>
-      <span class="cert">Information Assurance (DAU)</span>
-      <span class="cert">DLPT — Swahili</span>
-    </div>
-  </section>
-
-  <section>
-    <div class="sec-label">Profile</div>
-    <p>Kenyan-born U.S. citizen. Army veteran (CBRN). Swahili-English linguist with DLPT certification. Twelve months embedded in Nairobi (April 2025–2026) during Kenya's governance realignment — building AI infrastructure for the communities I was living inside of.</p>
-    <p>I work at the intersection of U.S. federal systems and East African operational reality. That dual exposure produced a body of work and a set of instincts that are genuinely difficult to replicate: someone who has administered critical national infrastructure in the U.S., served in the Army, speaks Swahili as a native language, ran a go-to-market strategy in Nairobi, and built AI systems used by thousands of people — organically.</p>
-    <p>The essays at <a href="https://www.gabrielmahia.com">gabrielmahia.com</a> are the long-form version of the same argument.</p>
-  </section>
-
+<div class="about-hero">
+  <div class="about-kicker">About</div>
+  <h1>Kenyan engineer.<br>East Africa's AI<br>infrastructure layer.</h1>
+  <div class="about-body">
+    <p>I'm a <strong>Kenyan diaspora software engineer</strong> based in Manassas, Virginia, building what I call "decision infrastructure for East Africa" — a portfolio of open-source AI tools, MCP servers, datasets, and agents that make the benefits of AI accessible to Swahili speakers across Kenya and the broader East African region.</p>
+    <p>The core thesis is simple: the most transformative AI applications for East Africa will not be translations of Western products. They will be built by people who understand the <strong>institutional context</strong> — how M-PESA actually works, what KCSE exams test, why land fraud is endemic, how county government functions, what pastoralists actually ask their veterinarians. I am one of those people, and I build accordingly.</p>
+    <p>I was the <strong>first documented engineer to implement all three major AI agent protocols</strong> — MCP (Model Context Protocol), A2A (Agent-to-Agent), and Google ADK — for East Africa. mpesa-mcp, my M-PESA MCP server, reached PyPI v0.1.9 with 400+ downloads across 12 countries without any marketing, purely through developer discoverability.</p>
+    <p>The portfolio now spans <strong>110+ open-source repositories</strong> covering financial inclusion, health, legal access, civic accountability, agriculture, education, environment, housing, transport, trade, mental health, emergency response, refugee services, and informal sector tools — all in Kiswahili, all deployable today.</p>
+    <p>Alongside the civic tech work, I maintain <strong>Quantum Maestro</strong> — a 6,000+ line options trading education and execution platform built on the IWT (Invest with Teri) framework. Technical credibility demonstrated across both domains: developing-world AI infrastructure and first-world quantitative trading tools.</p>
+    <p>I am actively seeking collaboration with researchers, funders, and organizations working on African language AI, digital public infrastructure, and financial inclusion technology. I have applied to the <strong>LINGUA Africa grant</strong> (Microsoft AI for Good Lab × Gates Foundation × Masakhane Hub) and am registered in the awesome-mcp-servers index.</p>
+  </div>
 </div>
-
-<div class="wrap">
-  <footer>
-    <span class="foot-copy">© 2026 Gabriel Mahia · <a href="mailto:contact@gabrielmahia.com">contact@gabrielmahia.com</a> · <a href="index.html">Portfolio</a> · <a href="https://www.linkedin.com/in/gabrielmahia/" target="_blank" rel="noopener">LinkedIn</a></span>
-  </footer>
+<div class="contact-strip">
+  <h2>Let's build together</h2>
+  <p style="color:rgba(255,255,255,0.5);max-width:400px;margin:0 auto">Open to collaborations, research partnerships, grant co-applications, and advisory roles in East African AI and fintech.</p>
+  <div class="contact-links">
+    <a href="mailto:contact@aikungfu.dev">contact@aikungfu.dev</a>
+    <a href="https://github.com/gabrielmahia" target="_blank">GitHub</a>
+    <a href="https://huggingface.co/gmahia" target="_blank">HuggingFace</a>
+    <a href="https://pypi.org/user/gmahia" target="_blank">PyPI</a>
+  </div>
 </div>
 </body>
 </html>
