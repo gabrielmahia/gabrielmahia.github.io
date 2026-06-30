@@ -4,15 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gabriel Mahia — East Africa Decision Infrastructure</title>
-<meta name="description" content="Kenyan diaspora engineer building coordination infrastructure for East Africa. Insurance, credit, markets, civic accountability, health, agriculture — 130+ open-source tools in Kiswahili. 130+ open-source AI tools — research-backed, Swahili-native. ML foundations: Stanford + DeepLearning.AI, 2020.">
-<meta property="og:title" content="Gabriel Mahia — East Africa AI Pioneer">
-<meta property="og:description" content="130+ open-source coordination tools for East Africa. 5 arXiv-backed firsts. First to implement MCP, A2A, and Google ADK in the region.">
+<meta name="description" content="Open-source coordination tools for East Africa: insurance, credit, markets, civic access, health, agriculture. Swahili-native. Built on public-domain research.">
+<meta property="og:title" content="Gabriel Mahia — East Africa Decision Infrastructure">
+<meta property="og:description" content="Open-source coordination tools for East Africa. Swahili-native. Built where information asymmetry costs the most.">
 <meta property="og:url" content="https://gabrielmahia.github.io">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-/* ── Reset & Tokens ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
   --ink:    #0d0d0d;
@@ -32,17 +31,13 @@
 }
 html { scroll-behavior: smooth; }
 body { background: var(--paper); color: var(--ink); font-family: var(--sans); line-height: 1.6; overflow-x: hidden; }
-
-/* ── Noise texture overlay ── */
 body::before {
   content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 1000;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.025'/%3E%3C/svg%3E");
   opacity: 0.4;
 }
-
-/* ── Hero ── */
 .hero {
-  min-height: 100vh; display: grid; grid-template-rows: auto 1fr auto;
+  min-height: 90vh; display: grid; grid-template-rows: auto 1fr auto;
   padding: 0; overflow: hidden; position: relative;
   background: linear-gradient(160deg, #0d0d0d 0%, #1a0a00 40%, #0d1f1a 100%);
 }
@@ -55,7 +50,6 @@ body::before {
 .nav-links { display: flex; gap: 32px; list-style: none; }
 .nav-links a { color: rgba(255,255,255,0.55); text-decoration: none; font-size: 0.82rem; letter-spacing: 0.06em; text-transform: uppercase; transition: color .2s; }
 .nav-links a:hover { color: var(--gold); }
-
 .hero-body {
   display: flex; flex-direction: column; justify-content: center;
   padding: 80px 48px 48px; position: relative; z-index: 10;
@@ -67,12 +61,12 @@ body::before {
 }
 .hero-kicker::before { content: ''; display: block; width: 32px; height: 1px; background: var(--gold); }
 .hero-h1 {
-  font-family: var(--serif); font-size: clamp(3rem, 7vw, 6rem);
-  color: #fff; line-height: 1.05; margin-bottom: 32px;
+  font-family: var(--serif); font-size: clamp(2.6rem, 6vw, 5rem);
+  color: #fff; line-height: 1.1; margin-bottom: 32px;
 }
 .hero-h1 em { color: var(--gold); font-style: italic; }
 .hero-sub {
-  font-size: 1.1rem; color: rgba(255,255,255,0.65); max-width: 560px;
+  font-size: 1.1rem; color: rgba(255,255,255,0.65); max-width: 600px;
   line-height: 1.7; margin-bottom: 48px;
 }
 .hero-cta { display: flex; gap: 16px; flex-wrap: wrap; }
@@ -88,60 +82,33 @@ body::before {
   border: 1px solid rgba(255,255,255,0.2); transition: all .2s;
 }
 .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
-
-.hero-stats {
-  padding: 32px 48px; border-top: 1px solid rgba(255,255,255,0.08);
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
-  position: relative; z-index: 10;
-}
-.stat { padding: 20px 24px; border-right: 1px solid rgba(255,255,255,0.08); }
-.stat:last-child { border-right: none; }
-.stat-n { font-family: var(--serif); font-size: 2.4rem; color: var(--gold); line-height: 1; }
-.stat-l { font-size: 0.75rem; color: rgba(255,255,255,0.45); letter-spacing: 0.06em; text-transform: uppercase; margin-top: 4px; }
-
-/* ── Ambient orbs ── */
 .orb {
   position: absolute; border-radius: 50%; filter: blur(100px); pointer-events: none;
 }
 .orb-1 { width: 600px; height: 600px; background: rgba(200,105,10,0.12); top: -100px; right: -100px; }
 .orb-2 { width: 400px; height: 400px; background: rgba(45,90,39,0.15); bottom: 0; left: 200px; }
 .orb-3 { width: 300px; height: 300px; background: rgba(26,74,110,0.2); top: 40%; right: 20%; }
-
-/* ── Sections ── */
 section { padding: 96px 48px; }
 .section-kicker {
   font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
   color: var(--amber); margin-bottom: 12px; display: flex; align-items: center; gap: 10px;
 }
 .section-kicker::before { content: ''; display: block; width: 24px; height: 1px; background: var(--amber); }
-.section-title { font-family: var(--serif); font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1.15; margin-bottom: 16px; }
-.section-sub { color: var(--mid); font-size: 1.05rem; max-width: 560px; line-height: 1.7; }
-
-/* ── Protocol Firsts ── */
-.protocols-section { background: var(--ink); color: #fff; }
-.protocols-section .section-kicker { color: var(--gold); }
-.protocols-section .section-kicker::before { background: var(--gold); }
-.protocols-section .section-title { color: #fff; }
-.protocols-section .section-sub { color: rgba(255,255,255,0.5); }
-.protocol-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; margin-top: 64px; background: rgba(255,255,255,0.06); }
-.protocol-card {
-  background: #0d0d0d; padding: 40px 36px;
-  transition: background .2s;
-}
-.protocol-card:hover { background: #141414; }
-.protocol-badge {
-  display: inline-block; font-family: var(--mono); font-size: 0.7rem;
-  color: var(--gold); border: 1px solid rgba(232,160,32,0.3);
-  padding: 3px 10px; border-radius: 99px; margin-bottom: 20px;
-  letter-spacing: 0.06em; text-transform: uppercase;
-}
-.protocol-name { font-family: var(--serif); font-size: 1.6rem; color: #fff; margin-bottom: 8px; }
-.protocol-desc { font-size: 0.88rem; color: rgba(255,255,255,0.5); line-height: 1.6; margin-bottom: 20px; }
-.protocol-link { font-family: var(--mono); font-size: 0.75rem; color: var(--gold); text-decoration: none; }
-.protocol-link:hover { text-decoration: underline; }
-.protocol-stat { font-size: 0.78rem; color: rgba(255,255,255,0.3); margin-top: 12px; font-family: var(--mono); }
-
-/* ── Domain Grid ── */
+.section-title { font-family: var(--serif); font-size: clamp(2rem, 4vw, 3rem); line-height: 1.2; margin-bottom: 16px; }
+.section-sub { color: var(--mid); font-size: 1.05rem; max-width: 640px; line-height: 1.7; }
+.problems-section { background: var(--ink); color: #fff; }
+.problems-section .section-kicker { color: var(--gold); }
+.problems-section .section-kicker::before { background: var(--gold); }
+.problems-section .section-title { color: #fff; }
+.problems-section .section-sub { color: rgba(255,255,255,0.5); }
+.problem-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; margin-top: 56px; background: rgba(255,255,255,0.06); }
+.problem-card { background: #0d0d0d; padding: 36px 32px; transition: background .2s; }
+.problem-card:hover { background: #141414; }
+.problem-stat { font-family: var(--mono); font-size: 0.72rem; color: var(--gold); margin-bottom: 14px; letter-spacing: 0.04em; }
+.problem-name { font-family: var(--serif); font-size: 1.4rem; color: #fff; margin-bottom: 10px; }
+.problem-desc { font-size: 0.88rem; color: rgba(255,255,255,0.55); line-height: 1.65; margin-bottom: 16px; }
+.problem-link { font-family: var(--mono); font-size: 0.75rem; color: var(--gold); text-decoration: none; }
+.problem-link:hover { text-decoration: underline; }
 .domains-section { background: var(--warm); }
 .domain-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; margin-top: 56px; }
 .domain-card {
@@ -167,8 +134,6 @@ section { padding: 96px 48px; }
   transition: all .15s;
 }
 .tool-chip:hover { background: var(--amber); color: #fff; border-color: transparent; }
-
-/* ── Featured Repos ── */
 .featured-section { background: #fff; }
 .featured-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 56px; }
 .featured-card {
@@ -185,7 +150,7 @@ section { padding: 96px 48px; }
 .featured-name a { color: var(--ink); text-decoration: none; }
 .featured-name a:hover { color: var(--amber); }
 .featured-desc { font-size: 0.86rem; color: var(--mid); line-height: 1.6; margin-bottom: 20px; }
-.featured-meta { display: flex; gap: 16px; font-family: var(--mono); font-size: 0.72rem; color: var(--mid); align-items: center; }
+.featured-meta { display: flex; gap: 16px; font-family: var(--mono); font-size: 0.72rem; color: var(--mid); align-items: center; flex-wrap: wrap; }
 .featured-badge {
   display: inline-flex; align-items: center; gap: 5px;
   font-family: var(--mono); font-size: 0.7rem;
@@ -194,24 +159,17 @@ section { padding: 96px 48px; }
   border: 1px solid rgba(45,90,39,0.15);
 }
 .pypi-badge { background: rgba(26,74,110,0.08); color: var(--sky); border-color: rgba(26,74,110,0.15); }
-
-/* ── Timeline / Journey ── */
-.journey-section { background: var(--ink); color: #fff; }
-.journey-section .section-title { color: #fff; }
-.journey-section .section-sub { color: rgba(255,255,255,0.5); }
-.timeline { margin-top: 64px; position: relative; padding-left: 48px; }
-.timeline::before { content: ''; position: absolute; left: 7px; top: 8px; bottom: 0; width: 1px; background: rgba(255,255,255,0.1); }
-.tl-item { position: relative; margin-bottom: 48px; }
-.tl-dot {
-  position: absolute; left: -44px; top: 4px; width: 15px; height: 15px;
-  border-radius: 50%; background: var(--amber); border: 2px solid #0d0d0d;
-  box-shadow: 0 0 0 4px rgba(200,105,10,0.2);
-}
-.tl-date { font-family: var(--mono); font-size: 0.72rem; color: var(--gold); letter-spacing: 0.08em; margin-bottom: 6px; }
-.tl-title { font-family: var(--serif); font-size: 1.3rem; color: #fff; margin-bottom: 6px; }
-.tl-body { font-size: 0.88rem; color: rgba(255,255,255,0.5); line-height: 1.7; }
-
-/* ── Platform strip ── */
+.research-section { background: var(--ink); color: #fff; }
+.research-section .section-kicker { color: var(--gold); }
+.research-section .section-kicker::before { background: var(--gold); }
+.research-section .section-title { color: #fff; }
+.research-section .section-sub { color: rgba(255,255,255,0.5); }
+.research-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px,1fr)); gap: 1px; margin-top: 56px; background: rgba(255,255,255,0.06); }
+.research-card { background: #0d0d0d; padding: 36px 32px; }
+.research-badge { display: inline-block; font-family: var(--mono); font-size: 0.68rem; color: var(--gold); border: 1px solid rgba(232,160,32,0.3); padding: 3px 10px; border-radius: 99px; margin-bottom: 16px; }
+.research-name { font-family: var(--serif); font-size: 1.3rem; color: #fff; margin-bottom: 8px; }
+.research-desc { font-size: 0.85rem; color: rgba(255,255,255,0.5); line-height: 1.6; margin-bottom: 14px; }
+.research-link { font-family: var(--mono); font-size: 0.72rem; color: var(--gold); text-decoration: none; }
 .platform-section { background: var(--warm); }
 .platform-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 48px; }
 .platform-card {
@@ -222,41 +180,36 @@ section { padding: 96px 48px; }
 .platform-name { font-weight: 600; font-size: 0.95rem; margin: 10px 0 4px; }
 .platform-detail { font-family: var(--mono); font-size: 0.72rem; color: var(--mid); }
 .platform-icon { font-size: 2rem; }
-
-/* ── CTA Strip ── */
 .cta-section {
   background: linear-gradient(135deg, #1a0a00 0%, #0d1f1a 100%);
   text-align: center; padding: 120px 48px;
 }
-.cta-section h2 { font-family: var(--serif); font-size: clamp(2rem, 5vw, 4rem); color: #fff; margin-bottom: 20px; }
-.cta-section p { color: rgba(255,255,255,0.55); font-size: 1.1rem; margin-bottom: 48px; max-width: 500px; margin-left: auto; margin-right: auto; }
+.cta-section h2 { font-family: var(--serif); font-size: clamp(2rem, 5vw, 3.5rem); color: #fff; margin-bottom: 20px; }
+.cta-section p { color: rgba(255,255,255,0.55); font-size: 1.1rem; margin-bottom: 48px; max-width: 540px; margin-left: auto; margin-right: auto; }
 .cta-links { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-
-/* ── Footer ── */
 footer {
   background: var(--ink); color: rgba(255,255,255,0.4); padding: 40px 48px;
   display: flex; align-items: center; justify-content: space-between;
-  font-family: var(--mono); font-size: 0.75rem;
+  font-family: var(--mono); font-size: 0.75rem; flex-wrap: wrap; gap: 16px;
 }
 footer a { color: rgba(255,255,255,0.4); text-decoration: none; }
 footer a:hover { color: var(--gold); }
-.footer-links { display: flex; gap: 24px; }
-
-/* ── Scroll animation ── */
+.footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
 .reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
 .reveal.in { opacity: 1; transform: none; }
-
-/* ── Responsive ── */
+.sovereignty-section { background:#1a1a2e; color:#e0e0e0; padding:3rem 2rem; text-align:center; }
+.sovereignty-section strong { color:#00d4aa; }
+.sovereignty-section a { color:#00d4aa; }
+.scenario { border-left:3px solid; padding:1.1rem 1.5rem; margin-bottom:1.4rem; border-radius: 0 8px 8px 0; }
 @media (max-width: 768px) {
   .hero-nav { padding: 20px 24px; }
   .nav-links { display: none; }
   .hero-body { padding: 48px 24px 32px; }
-  .hero-stats { grid-template-columns: repeat(2,1fr); }
   section { padding: 64px 24px; }
-  .protocol-grid, .featured-grid { grid-template-columns: 1fr; }
+  .problem-grid, .featured-grid, .research-grid { grid-template-columns: 1fr; }
   .domain-grid { grid-template-columns: 1fr; }
   .platform-grid { grid-template-columns: repeat(2,1fr); }
-  footer { flex-direction: column; gap: 16px; text-align: center; }
+  footer { flex-direction: column; text-align: center; }
 }
 </style>
 </head>
@@ -271,9 +224,9 @@ footer a:hover { color: var(--gold); }
   <nav class="hero-nav">
     <div class="logo">Gabriel Mahia</div>
     <ul class="nav-links">
-      <li><a href="#protocols">Protocols</a></li>
+      <li><a href="#problems">Problems</a></li>
       <li><a href="#domains">Portfolio</a></li>
-      <li><a href="#journey">Journey</a></li>
+      <li><a href="#research">Research</a></li>
       <li><a href="https://github.com/gabrielmahia" target="_blank">GitHub</a></li>
     </ul>
   </nav>
@@ -282,225 +235,140 @@ footer a:hover { color: var(--gold); }
     <div class="hero-kicker">East Africa Decision Infrastructure</div>
     <h1 class="hero-h1">Coordination infrastructure<br>East Africa can <em>build on</em></h1>
     <p class="hero-sub">
-      Kenyan diaspora engineer. 130+ open-source tools that reduce opacity, enable coordination, and amplify agency across East Africa — insurance, credit, markets, civic rights, health, agriculture. All research-backed. All in Kiswahili. AI is the delivery layer, not the headline. ML foundations from Stanford and DeepLearning.AI (2020).
+      Kenyan diaspora engineer. Open-source coordination tools across insurance, credit, markets,
+      civic access, health, and agriculture — built where information asymmetry costs the most.
+      Swahili-native by default. AI is the delivery layer, not the headline.
     </p>
     <div class="hero-cta">
-      <a href="#domains" class="btn-primary">Explore the Portfolio →</a>
-      <a href="https://github.com/gabrielmahia/mpesa-mcp" target="_blank" class="btn-outline">12 packages on PyPI ↗</a>
-    </div>
-  </div>
-
-  <div class="hero-stats">
-    <div class="stat">
-      <div class="stat-n">130+</div>
-      <div class="stat-l">Open Source Repos</div>
-    </div>
-    <div class="stat">
-      <div class="stat-n">8</div>
-      <div class="stat-l">East Africa Firsts</div>
-    </div>
-    <div class="stat">
-      <div class="stat-n">400+</div>
-      <div class="stat-l">PyPI Downloads</div>
-    </div>
-    <div class="stat">
-      <div class="stat-n">47M</div>
-      <div class="stat-l">Swahili Speakers Served</div>
+      <a href="#problems" class="btn-primary">See the problems →</a>
+      <a href="https://github.com/gabrielmahia/mpesa-mcp" target="_blank" class="btn-outline">mpesa-mcp on GitHub ↗</a>
     </div>
   </div>
 </section>
 
-<!-- PROTOCOL FIRSTS -->
-<section class="protocols-section" id="protocols">
-  <div class="section-kicker">Pioneer Status</div>
-  <h2 class="section-title">First in East Africa on every major protocol</h2>
-  <p class="section-sub">Each new AI protocol is a new coordination primitive. When they emerge, East Africa should be building on them within weeks — not watching from the outside. Each of these was implemented for East Africa within weeks of global availability.</p>
+<!-- PROBLEM-FIRST INFRASTRUCTURE -->
+<section class="problems-section" id="problems">
+  <div class="section-kicker">Structural Gaps</div>
+  <h2 class="section-title">Coordination problems that don't have tools yet</h2>
+  <p class="section-sub">M-PESA processes enormous transaction volume daily. Africa's Talking reaches users across 20+ countries on basic phones. Neither had an AI-agent interface. Drought signals, market prices, land records, and labor data each sit in their own silo — even when the response to one depends on knowing the other.</p>
 
-  <div class="protocol-grid">
-    <div class="protocol-card">
-      <div class="protocol-badge">MCP — 2024</div>
-      <div class="protocol-name">mpesa-mcp</div>
-      <div class="protocol-desc">Model Context Protocol server for M-PESA's Daraja API. Any LLM can now call M-PESA tools natively — the first East African financial API in the MCP ecosystem.</div>
-      <a href="https://github.com/gabrielmahia/mpesa-mcp" class="protocol-link" target="_blank">github.com/gabrielmahia/mpesa-mcp →</a>
-      <div class="protocol-stat">v0.2.0 · 22 tools · PyPI · 400+ downloads · 12 countries</div>
+  <div class="problem-grid">
+    <div class="problem-card reveal">
+      <div class="problem-stat">M-PESA · no AI-agent interface</div>
+      <div class="problem-name">mpesa-mcp</div>
+      <div class="problem-desc">An MCP server for M-PESA's Daraja API and Africa's Talking SMS/USSD. Lets an AI agent trigger payments, check transaction status, and send SMS or airtime across East African telecom networks — without a custom integration per project.</div>
+      <a href="https://github.com/gabrielmahia/mpesa-mcp" class="problem-link" target="_blank">github.com/gabrielmahia/mpesa-mcp →</a>
     </div>
-    <div class="protocol-card">
-      <div class="protocol-badge">A2A — 2025</div>
-      <div class="protocol-name">kenya-a2a</div>
-      <div class="protocol-desc">Agent-to-Agent protocol implementation for Kenya civic AI agents. Multi-agent coordination for government service queries, budget analysis, and civic accountability tasks.</div>
-      <a href="https://github.com/gabrielmahia/kenya-a2a" class="protocol-link" target="_blank">github.com/gabrielmahia/kenya-a2a →</a>
-      <div class="protocol-stat">First A2A implementation for East Africa</div>
+    <div class="problem-card reveal">
+      <div class="problem-stat">Drought data · trapped in agency silos</div>
+      <div class="problem-name">wapimaji-mcp</div>
+      <div class="problem-desc">NDMA drought phase classification, water access points, and borehole data exposed as agent-callable tools. A CHW or extension officer's AI assistant can check drought severity for a specific county without navigating a government portal.</div>
+      <a href="https://github.com/gabrielmahia/wapimaji-mcp" class="problem-link" target="_blank">github.com/gabrielmahia/wapimaji-mcp →</a>
     </div>
-    <div class="protocol-card">
-      <div class="protocol-badge">ADK — 2025</div>
-      <div class="protocol-name">kenya-adk</div>
-      <div class="protocol-desc">Google Agent Development Kit implementation for East African AI agents. Swahili-native agent pipelines for financial, civic, and agricultural advisory tasks.</div>
-      <a href="https://github.com/gabrielmahia/kenya-adk" class="protocol-link" target="_blank">github.com/gabrielmahia/kenya-adk →</a>
-      <div class="protocol-stat">First Google ADK deployment for East Africa</div>
+    <div class="problem-card reveal">
+      <div class="problem-stat">Domain tools · isolated from each other</div>
+      <div class="problem-name">africa-coord-bus</div>
+      <div class="problem-desc">A drought alert from one server and a disease cluster from another should trigger a coordinated response — insurance evaluation, crop advisory, county notification. Without a shared event bus, each tool works alone even when the underlying crisis is the same one.</div>
+      <a href="https://github.com/gabrielmahia/africa-coord-bus" class="problem-link" target="_blank">github.com/gabrielmahia/africa-coord-bus →</a>
+    </div>
+    <div class="problem-card reveal">
+      <div class="problem-stat">East Africa data · 100 years old, unused</div>
+      <div class="problem-name">Public domain datasets</div>
+      <div class="problem-desc">Agricultural records from 1906–1925, historical Swahili corpora, expired patents, and out-of-copyright maps — structured for AI training and grounding rather than left as scanned archives nobody queries.</div>
+      <a href="https://huggingface.co/gmahia" class="problem-link" target="_blank">huggingface.co/gmahia →</a>
     </div>
   </div>
 </section>
 
 <!-- DOMAIN PORTFOLIO -->
 <section class="domains-section" id="domains">
-  <div class="section-kicker">Complete Coverage</div>
-  <h2 class="section-title">Every domain that matters</h2>
-  <p class="section-sub">Coordination fails when systems are missing. Each domain below represents a coordination problem — insurance, credit, markets, civic rights, health, agriculture. The tools are the infrastructure. AI is how they scale.</p>
+  <div class="section-kicker">Domain Coverage</div>
+  <h2 class="section-title">Where the coordination gaps are</h2>
+  <p class="section-sub">Each domain below represents a coordination problem — insurance, credit, markets, civic rights, health, agriculture. The tools are the infrastructure; AI agents are how a person interacts with them.</p>
 
   <div class="domain-grid">
     <div class="domain-card reveal">
       <div class="domain-icon">💰</div>
       <div class="domain-name">Financial Inclusion</div>
-      <div class="domain-desc">M-PESA intelligence, SACCO discovery, microfinance safety, business formalization, remittances, and wealth building — the complete financial stack for 35M+ mobile money users.</div>
+      <div class="domain-desc">M-PESA intelligence, alternative credit scoring from mobile-money behavior, SACCO discovery, remittance corridor comparison, and tax calculation.</div>
       <div class="domain-tools">
         <a href="https://github.com/gabrielmahia/mpesa-mcp" class="tool-chip">mpesa-mcp</a>
-        <a href="https://github.com/gabrielmahia/daraja-ai" class="tool-chip">daraja-ai</a>
-        <a href="https://github.com/gabrielmahia/biashara-ai" class="tool-chip">biashara-ai</a>
-        <a href="https://github.com/gabrielmahia/mali-ai" class="tool-chip">mali-ai</a>
-        <a href="https://github.com/gabrielmahia/mkopo-ai" class="tool-chip">mkopo-ai</a>
-        <a href="https://github.com/gabrielmahia/remit-mcp" class="tool-chip">remit-mcp 🔬</a>
+        <a href="https://github.com/gabrielmahia/mkopo-mcp" class="tool-chip">mkopo-mcp</a>
+        <a href="https://github.com/gabrielmahia/jumuia-mcp" class="tool-chip">jumuia-mcp</a>
+        <a href="https://github.com/gabrielmahia/remit-mcp" class="tool-chip">remit-mcp</a>
+        <a href="https://github.com/gabrielmahia/kra-mcp" class="tool-chip">kra-mcp</a>
+        <a href="https://github.com/gabrielmahia/faida-mcp" class="tool-chip">faida-mcp</a>
       </div>
     </div>
     <div class="domain-card reveal">
       <div class="domain-icon">⚖️</div>
       <div class="domain-name">Civic & Legal Access</div>
-      <div class="domain-desc">Document explainer, legal RAG, budget transparency, procurement watchdog, election education, and human rights guidance — constitutional rights in Swahili for every citizen.</div>
+      <div class="domain-desc">Document explainers, civic information retrieval, county data, labor rights, and form-filling assistance — constitutional and statutory information accessible without a lawyer.</div>
       <div class="domain-tools">
-        <a href="https://github.com/gabrielmahia/hati-ai" class="tool-chip">hati-ai</a>
-        <a href="https://github.com/gabrielmahia/kenya-legal-rag" class="tool-chip">kenya-legal-rag</a>
-        <a href="https://github.com/gabrielmahia/bajeti-ai" class="tool-chip">bajeti-ai</a>
-        <a href="https://github.com/gabrielmahia/manunuzi-ai" class="tool-chip">manunuzi-ai</a>
-        <a href="https://github.com/gabrielmahia/haki-ai" class="tool-chip">haki-ai</a>
-        <a href="https://github.com/gabrielmahia/hakiyangu" class="tool-chip">hakiyangu 🔬</a>
+        <a href="https://github.com/gabrielmahia/county-mcp" class="tool-chip">county-mcp</a>
+        <a href="https://github.com/gabrielmahia/habari-mcp" class="tool-chip">habari-mcp</a>
+        <a href="https://github.com/gabrielmahia/fomu-mcp" class="tool-chip">fomu-mcp</a>
+        <a href="https://github.com/gabrielmahia/haki-ya-kazi-mcp" class="tool-chip">haki-ya-kazi-mcp</a>
+        <a href="https://github.com/gabrielmahia/ardhi-mcp" class="tool-chip">ardhi-mcp</a>
       </div>
     </div>
     <div class="domain-card reveal">
       <div class="domain-icon">🏥</div>
       <div class="domain-name">Health & Wellness</div>
-      <div class="domain-desc">Medicine information, mental health support, nutrition guidance, and health facility data — safety-critical tools for the 50%+ of Kenyans who self-medicate without guidance.</div>
+      <div class="domain-desc">Health system navigation, mental health resource finding, and nutrition guidance — built around Kenya MOH protocols rather than generic medical advice.</div>
       <div class="domain-tools">
-        <a href="https://github.com/gabrielmahia/dawa-ai" class="tool-chip">dawa-ai</a>
-        <a href="https://github.com/gabrielmahia/afua-ai" class="tool-chip">afua-ai</a>
-        <a href="https://github.com/gabrielmahia/lishe-ai" class="tool-chip">lishe-ai</a>
-        <a href="https://github.com/gabrielmahia/swahili-health-mcp" class="tool-chip">health-mcp</a>
-        <a href="https://github.com/gabrielmahia/afyanipoa" class="tool-chip">afyanipoa-ai 🔬</a>
+        <a href="https://github.com/gabrielmahia/afya-mcp" class="tool-chip">afya-mcp</a>
+        <a href="https://github.com/gabrielmahia/afya-ya-akili-mcp" class="tool-chip">afya-ya-akili-mcp</a>
       </div>
     </div>
     <div class="domain-card reveal">
       <div class="domain-icon">🌾</div>
-      <div class="domain-name">Agriculture & Livestock</div>
-      <div class="domain-desc">Crop disease diagnosis, market prices, weather advisory, livestock health, and planting calendars — serving 8M+ smallholder farmers who feed 50M people.</div>
+      <div class="domain-name">Agriculture & Climate</div>
+      <div class="domain-desc">Drought intelligence, parametric crop insurance, environmental permits, and climate data — for the farmers and pastoralists who carry the most weather risk with the least information.</div>
       <div class="domain-tools">
-        <a href="https://github.com/gabrielmahia/shamba-ai" class="tool-chip">shamba-ai</a>
-        <a href="https://github.com/gabrielmahia/mifugo-ai" class="tool-chip">mifugo-ai</a>
-        <a href="https://github.com/gabrielmahia/mazao-intel" class="tool-chip">mazao-intel</a>
-        <a href="https://github.com/gabrielmahia/mazingira-ai" class="tool-chip">mazingira-ai</a>
-        <a 
-    <a href="https://github.com/gabrielmahia/bima-mcp" target="_blank" class="featured-card">
-      <div class="card-emoji">🛡️</div>
-      <div class="card-title">bima-mcp</div>
-      <div class="card-desc">Kenya insurance intelligence MCP server — NHIF, parametric crop risk, microinsurance comparison. First insurance MCP for Africa.</div>
-      <div class="card-tags"><span class="tag">Insurance</span><span class="tag">MCP</span><span class="tag">Kenya</span></div>
-    </a>
-    <a href="https://github.com/gabrielmahia/kilimo-bima" target="_blank" class="featured-card">
-      <div class="card-emoji">🌾</div>
-      <div class="card-title">kilimo-bima</div>
-      <div class="card-desc">Parametric crop insurance calculator — NDMA drought data, ACRE Africa methodology, Swahili-first, M-PESA payment flow.</div>
-      <div class="card-tags"><span class="tag">Insurance</span><span class="tag">Agriculture</span><span class="tag">Streamlit</span></div>
-    </a>
-    <a github.com/gabrielmahia/shamba" class="tool-chip">shamba 🔬</a>
+        <a href="https://github.com/gabrielmahia/wapimaji-mcp" class="tool-chip">wapimaji-mcp</a>
+        <a href="https://github.com/gabrielmahia/bima-mcp" class="tool-chip">bima-mcp</a>
+        <a href="https://github.com/gabrielmahia/mazingira-mcp" class="tool-chip">mazingira-mcp</a>
       </div>
     </div>
     <div class="domain-card reveal">
       <div class="domain-icon">📚</div>
       <div class="domain-name">Education & Language</div>
-      <div class="domain-desc">KCSE tutoring, Swahili translation between 6 languages, education statistics, and voice-first AI — removing the English barrier from learning for 4M+ secondary students.</div>
+      <div class="domain-desc">School registry data, KCSE/KCPE information, and Swahili/English translation infrastructure — removing the English barrier from coordination tools, not just content.</div>
       <div class="domain-tools">
-        <a href="https://github.com/gabrielmahia/shule-ai" class="tool-chip">shule-ai</a>
-        <a href="https://github.com/gabrielmahia/tafsiri-ai" class="tool-chip">tafsiri-ai</a>
-        <a href="https://github.com/gabrielmahia/elimu-stats" class="tool-chip">elimu-stats</a>
-        <a href="https://github.com/gabrielmahia/ongea-ai" class="tool-chip">ongea-ai</a>
-      </div>
-    </div>
-    <div class="domain-card reveal">
-      <div class="domain-icon">👥</div>
-      <div class="domain-name">Social Inclusion</div>
-      <div class="domain-desc">Youth employment, informal sector tools, refugee services, emergency response — reaching the communities most excluded by existing digital services.</div>
-      <div class="domain-tools">
-        <a href="https://github.com/gabrielmahia/ajira-ai" class="tool-chip">ajira-ai</a>
-        <a href="https://github.com/gabrielmahia/jua-kali-ai" class="tool-chip">jua-kali-ai</a>
-        <a href="https://github.com/gabrielmahia/wakimbizi-ai" class="tool-chip">wakimbizi-ai</a>
-        <a href="https://github.com/gabrielmahia/dharura-ai" class="tool-chip">dharura-ai</a>
-      </div>
-    </div>
-    <div class="domain-card reveal">
-      <div class="domain-icon">🔌</div>
-      <div class="domain-name">Developer Infrastructure</div>
-      <div class="domain-desc">MCP Hub aggregator, RAG systems, multi-agent protocols, SMS infrastructure, and 3D visualization — the building blocks that let any East African developer go faster.</div>
-      <div class="domain-tools">
-        <a href="https://github.com/gabrielmahia/kenya-mcp-hub" class="tool-chip">kenya-mcp-hub</a>
-        <a href="https://github.com/gabrielmahia/kenya-rag" class="tool-chip">kenya-rag</a>
-        <a href="https://github.com/gabrielmahia/nairobi-stack" class="tool-chip">nairobi-stack</a>
-        <a href="https://github.com/gabrielmahia/kenya-sms" class="tool-chip">kenya-sms</a>
-        <a href="https://github.com/gabrielmahia/kenya-nowcast" class="tool-chip">kenya-nowcast 🔬</a>
+        <a href="https://github.com/gabrielmahia/elimu-mcp" class="tool-chip">elimu-mcp</a>
+        <a href="https://github.com/gabrielmahia/tafsiri-mcp" class="tool-chip">tafsiri-mcp</a>
       </div>
     </div>
     <div class="domain-card reveal">
       <div class="domain-icon">🏠</div>
-      <div class="domain-name">Housing, Trade & Transport</div>
-      <div class="domain-desc">Land fraud detection, rental market intelligence, customs duty calculator, EAC trade guidance, and transport planning — every physical-world domain digitized in Swahili.</div>
+      <div class="domain-name">Housing, Transport & Diaspora</div>
+      <div class="domain-desc">Rental market data, matatu route and NTSA service information, and diaspora-specific tools for managing affairs in Kenya from abroad.</div>
       <div class="domain-tools">
-        <a href="https://github.com/gabrielmahia/nyumba-ai" class="tool-chip">nyumba-ai</a>
-        <a href="https://github.com/gabrielmahia/safari-ai" class="tool-chip">safari-ai</a>
-        <a href="https://github.com/gabrielmahia/mzigo-ai" class="tool-chip">mzigo-ai</a>
-        <a href="https://github.com/gabrielmahia/landwatch" class="tool-chip">landwatch</a>
+        <a href="https://github.com/gabrielmahia/nyumba-mcp" class="tool-chip">nyumba-mcp</a>
+        <a href="https://github.com/gabrielmahia/usafiri-mcp" class="tool-chip">usafiri-mcp</a>
+        <a href="https://github.com/gabrielmahia/diaspora-mcp" class="tool-chip">diaspora-mcp</a>
+        <a href="https://github.com/gabrielmahia/familia-mcp" class="tool-chip">familia-mcp</a>
       </div>
     </div>
-  </div>
-</section>
-
-
-<!-- RESEARCH FOUNDATION -->
-<section class="protocols-section" id="research">
-  <div class="section-kicker">Research-Backed</div>
-  <h2 class="section-title">5 global papers → 5 East Africa firsts</h2>
-  <p class="section-sub">Scanned arXiv, IMF Working Papers, WHO guidelines, PLOS One — then built tools that didn't exist anywhere in the region. 🔬 marks research-backed implementations.</p>
-
-  <div class="protocol-grid">
-    <div class="protocol-card">
-      <div class="protocol-badge">arXiv:1604.03169 · 2016</div>
-      <div class="protocol-name">shamba</div>
-      <div class="protocol-desc">First Swahili-native crop disease detection app. PlantVillage dataset (54,306 images, 99.35% accuracy). Kenya loses 14.1% of annual yield to disease. Extension officers: 1 per 3,000+ farmers.</div>
-      <a href="https://github.com/gabrielmahia/shamba" class="protocol-link" target="_blank">github.com/gabrielmahia/shamba →</a>
-      <div class="protocol-stat">Gemini Vision · Swahili-first · Zero-install</div>
+    <div class="domain-card reveal">
+      <div class="domain-icon">🔌</div>
+      <div class="domain-name">Coordination Infrastructure</div>
+      <div class="domain-desc">The cross-domain layer: an event bus connecting tools that otherwise can't see each other, offline-first inference, and a unified civic-agent SDK.</div>
+      <div class="domain-tools">
+        <a href="https://github.com/gabrielmahia/africa-coord-bus" class="tool-chip">africa-coord-bus</a>
+        <a href="https://github.com/gabrielmahia/offline-mcp" class="tool-chip">offline-mcp</a>
+        <a href="https://github.com/gabrielmahia/civic-agent-kit" class="tool-chip">civic-agent-kit</a>
+      </div>
     </div>
-    <div class="protocol-card">
-      <div class="protocol-badge">IMF WP 2026/020 · PLOS One 2025</div>
-      <div class="protocol-name">kenya-nowcast</div>
-      <div class="protocol-desc">First county-level economic health tracker for all 47 Kenya counties. Satellite nighttime light (VIIRS) methodology — from IMF machine learning + satellite data research. Average SSA survey gap: 6.5 years.</div>
-      <a href="https://github.com/gabrielmahia/kenya-nowcast" class="protocol-link" target="_blank">github.com/gabrielmahia/kenya-nowcast →</a>
-      <div class="protocol-stat">VIIRS NTL proxy · All 47 counties · Live dashboard</div>
-    </div>
-    <div class="protocol-card">
-      <div class="protocol-badge">arXiv:2305.19118 · 2023</div>
-      <div class="protocol-name">hakiyangu</div>
-      <div class="protocol-desc">First multi-agent constitutional rights debate system for East Africa. Liang et al. proved multi-agent debate reduces bias and improves accuracy. Government vs. citizen — adversarial format in Swahili.</div>
-      <a href="https://github.com/gabrielmahia/hakiyangu" class="protocol-link" target="_blank">github.com/gabrielmahia/hakiyangu →</a>
-      <div class="protocol-stat">5 constitutional rights covered · Swahili + English</div>
-    </div>
-    <div class="protocol-card">
-      <div class="protocol-badge">World Bank RPW · 2025</div>
-      <div class="protocol-name">remit-mcp</div>
-      <div class="protocol-desc">First MCP server for African diaspora remittance optimization. Kenya received USD 4.2B in remittances in 2024 (World Bank). SDG 10.c target: reduce corridor fees to 3% by 2030. Some corridors: 8–9%.</div>
-      <a href="https://github.com/gabrielmahia/remit-mcp" class="protocol-link" target="_blank">github.com/gabrielmahia/remit-mcp →</a>
-      <div class="protocol-stat">US→KE · UK→KE · CA→KE corridors</div>
-    </div>
-    <div class="protocol-card">
-      <div class="protocol-badge">arXiv:2408.17216 · WHO 2022</div>
-      <div class="protocol-name">afyanipoa-ai</div>
-      <div class="protocol-desc">First Swahili-language AI co-pilot for Kenya's 105,000+ Community Health Workers. Federated AI works on Raspberry Pi-class devices (arXiv:2408.17216). Rural CHW ratio: 3,000 patients per worker.</div>
-      <a href="https://github.com/gabrielmahia/afyanipoa" class="protocol-link" target="_blank">github.com/gabrielmahia/afyanipoa-ai →</a>
-      <div class="protocol-stat">Kenya MOH protocols · WHO IMCI · Swahili-first</div>
+    <div class="domain-card reveal">
+      <div class="domain-icon">📜</div>
+      <div class="domain-name">Historical & Public Domain Data</div>
+      <div class="domain-desc">Agricultural records, legal precedent, Swahili-language corpora, and military and strategic texts — historical material structured so AI systems can actually use it.</div>
+      <div class="domain-tools">
+        <a href="https://github.com/gabrielmahia/historia-mcp" class="tool-chip">historia-mcp</a>
+        <a href="https://huggingface.co/gmahia" class="tool-chip">9 HF datasets</a>
+      </div>
     </div>
   </div>
 </section>
@@ -508,120 +376,106 @@ footer a:hover { color: var(--gold); }
 <!-- FEATURED REPOS -->
 <section class="featured-section">
   <div class="section-kicker">Flagship Tools</div>
-  <h2 class="section-title">Built for production, open by default</h2>
-  <p class="section-sub">Every tool ships with CI/CD, documented APIs, and proper licensing. Not prototypes — production infrastructure.</p>
+  <h2 class="section-title">Built for use, open by default</h2>
+  <p class="section-sub">Each tool ships with CI, documented APIs, and a clear license. Built for someone to actually run, not as a demo.</p>
 
   <div class="featured-grid">
     <div class="featured-card reveal">
       <div class="featured-lang">Python · MCP</div>
       <div class="featured-name"><a href="https://github.com/gabrielmahia/mpesa-mcp" target="_blank">mpesa-mcp</a></div>
-      <div class="featured-desc">The first Model Context Protocol server for M-PESA's Daraja API. Enables any Claude, GPT-4, or Gemini agent to initiate M-PESA transactions, B2C disbursements, SIM swap queries, Bill Manager, and Ratiba recurring payments — 22 Daraja API tools natively. No custom integration needed.</div>
+      <div class="featured-desc">M-PESA's Daraja API and Africa's Talking, exposed as MCP tools. STK push, B2C disbursements, SIM swap queries, Bill Manager, Ratiba recurring payments, SMS, and airtime — 22 tools, no custom integration needed per project.</div>
       <div class="featured-meta">
-        <span class="featured-badge pypi-badge">PyPI v0.2.0</span>
-        <span class="featured-badge">400+ downloads</span>
-        <span>12 countries</span>
+        <span class="featured-badge pypi-badge">PyPI</span>
+        <span class="featured-badge">MIT</span>
+        <span>22 tools</span>
       </div>
     </div>
     <div class="featured-card reveal">
       <div class="featured-lang">Python · RAG</div>
       <div class="featured-name"><a href="https://github.com/gabrielmahia/kenya-legal-rag" target="_blank">kenya-legal-rag</a></div>
-      <div class="featured-desc">Retrieval-Augmented Generation over Kenya's Constitution, Employment Act, Land Act, Companies Act, and Data Protection Act. Query Kenya's legal system in English or Swahili — for citizens, advocates, and AI agents alike.</div>
+      <div class="featured-desc">Retrieval-augmented generation over Kenya's Constitution, Employment Act, Land Act, Companies Act, and Data Protection Act. Query Kenya's legal system in English or Swahili.</div>
       <div class="featured-meta">
-        <span class="featured-badge">MIT License</span>
+        <span class="featured-badge">MIT</span>
         <span class="featured-badge pypi-badge">MCP Compatible</span>
       </div>
     </div>
     <div class="featured-card reveal">
       <div class="featured-lang">Streamlit · Gemini</div>
       <div class="featured-name"><a href="https://github.com/gabrielmahia/shamba-ai" target="_blank">shamba-ai</a></div>
-      <div class="featured-desc">Kenya's first AI agricultural advisor in Swahili. Crop disease diagnosis from symptom description, market prices by county, weather advisory, planting calendars, and input recommendations — all at zero cost to 8M+ farmers.</div>
+      <div class="featured-desc">Swahili-language agricultural advisor — crop disease diagnosis from symptom description, market prices by county, weather advisory, and planting calendars.</div>
       <div class="featured-meta">
         <span class="featured-badge">CC BY-NC-ND</span>
-        <span>arXiv:2601.02065 basis</span>
       </div>
     </div>
     <div class="featured-card reveal">
       <div class="featured-lang">Python · HuggingFace</div>
       <div class="featured-name"><a href="https://huggingface.co/datasets/gmahia/swahili-civic-nlp" target="_blank">swahili-civic-nlp</a></div>
-      <div class="featured-desc">Foundational Swahili civic NLP dataset — annotated sentences covering government services, constitutional rights, M-PESA financial terms, and county administration. The data layer that enables everything above.</div>
+      <div class="featured-desc">Foundational Swahili civic NLP dataset — annotated sentences covering government services, constitutional rights, M-PESA financial terms, and county administration.</div>
       <div class="featured-meta">
         <span class="featured-badge">CC BY 4.0</span>
-        <span>HuggingFace · Public</span>
+        <span>HuggingFace</span>
       </div>
     </div>
     <div class="featured-card reveal">
-      <div class="featured-lang">Streamlit · Gemini Vision 🔬</div>
+      <div class="featured-lang">Streamlit · Gemini Vision</div>
       <div class="featured-name"><a href="https://github.com/gabrielmahia/shamba" target="_blank">shamba</a></div>
-      <div class="featured-desc">Upload a crop leaf photo → Swahili diagnosis → treatment steps → KALRO referral. Research basis: Mohanty et al. 2016 (PlantVillage, arXiv:1604.03169). First Swahili-native crop disease detection app in East Africa. Serves 8M+ smallholder farmers who lose 14.1% of annual yield to disease.</div>
+      <div class="featured-desc">Upload a crop leaf photo → Swahili diagnosis → treatment steps → KALRO referral. Built on the PlantVillage methodology (Mohanty et al., 2016).</div>
       <div class="featured-meta">
-        <span class="featured-badge">MIT License</span>
-        <span>arXiv:1604.03169 basis</span>
-        <span>First in East Africa</span>
+        <span class="featured-badge">MIT</span>
+        <span>PlantVillage basis</span>
       </div>
     </div>
     <div class="featured-card reveal">
-      <div class="featured-lang">Streamlit · WHO Protocols 🔬</div>
+      <div class="featured-lang">Streamlit · MOH Protocols</div>
       <div class="featured-name"><a href="https://github.com/gabrielmahia/afyanipoa" target="_blank">afyanipoa-ai</a></div>
-      <div class="featured-desc">Swahili AI clinical co-pilot for Kenya's 105,000+ Community Health Workers. Embedded Kenya MOH protocols (fever, cough, diarrhoea, ANC, malnutrition). Research basis: arXiv:2408.17216 — federated AI works on Raspberry Pi-class devices in 5 African countries. Rural patient ratio: 3,000:1.</div>
+      <div class="featured-desc">Swahili AI co-pilot for Community Health Workers. Embeds Kenya MOH protocols for fever, cough, diarrhoea, ANC, and malnutrition triage.</div>
       <div class="featured-meta">
-        <span class="featured-badge">MIT License</span>
-        <span>arXiv:2408.17216 basis</span>
-        <span>First in East Africa</span>
+        <span class="featured-badge">MIT</span>
+        <span>Kenya MOH protocols</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- JOURNEY TIMELINE -->
-<section class="journey-section" id="journey">
-  <div class="section-kicker">The Campaign</div>
-  <h2 class="section-title">How 23 MCP servers get built</h2>
-  <p class="section-sub">Methodical, strategic, compounding. Each milestone unlocked the next. 2020 foundations → 2026 complete coordination infrastructure stack.</p>
+<!-- RESEARCH FOUNDATION -->
+<section class="research-section" id="research">
+  <div class="section-kicker">Research-Grounded</div>
+  <h2 class="section-title">Built on published methodology, not assumptions</h2>
+  <p class="section-sub">Each tool below cites the paper or dataset its method comes from. The research existed; the regional implementation didn't.</p>
 
-  <div class="timeline">
-    <div class="tl-item reveal">
-      <div class="tl-dot"></div>
-      <div class="tl-date">2020 — Foundation</div>
-      <div class="tl-title">Stanford ML + DeepLearning.AI (Andrew Ng)</div>
-      <div class="tl-body">Completed the Machine Learning Specialization (Stanford Online) and Deep Learning Specialization (DeepLearning.AI) — both taught by Andrew Ng. 6 courses spanning neural networks, CNNs, sequence models, hyperparameter tuning, and structuring ML projects. These credentials established the foundational layer that the 2023–2026 portfolio is built on. <a href="https://coursera.org/verify/specialization/Q8DEN62H7M4Z" target="_blank" style="color:var(--amber)">Verify DL Specialization ↗</a></div>
+  <div class="research-grid">
+    <div class="research-card reveal">
+      <div class="research-badge">arXiv:1604.03169 · 2016</div>
+      <div class="research-name">shamba</div>
+      <div class="research-desc">PlantVillage dataset (54,306 images, 99.35% accuracy) applied to Swahili-language crop disease diagnosis. Kenya loses roughly 14% of annual yield to disease; extension officer coverage is sparse.</div>
+      <a href="https://github.com/gabrielmahia/shamba" class="research-link" target="_blank">github.com/gabrielmahia/shamba →</a>
     </div>
-    <div class="tl-item reveal">
-      <div class="tl-dot"></div>
-      <div class="tl-date">2023 — Origin</div>
-      <div class="tl-title">Identified the gap</div>
-      <div class="tl-body">M-PESA had no AI layer. Kenya's 47M Swahili speakers had no coordination tools in their language. First tools built: daraja-ai, shule-ai, basic civic tools. Realized the problem wasn't one app — it was missing infrastructure for a whole continent.</div>
+    <div class="research-card reveal">
+      <div class="research-badge">IMF WP 2026/020 · PLOS One 2025</div>
+      <div class="research-name">kenya-nowcast</div>
+      <div class="research-desc">County-level economic activity estimated via satellite nighttime light (VIIRS), following IMF machine-learning methodology. Sub-Saharan survey data typically lags by years.</div>
+      <a href="https://github.com/gabrielmahia/kenya-nowcast" class="research-link" target="_blank">github.com/gabrielmahia/kenya-nowcast →</a>
     </div>
-    <div class="tl-item reveal">
-      <div class="tl-dot"></div>
-      <div class="tl-date">2024 — Infrastructure First</div>
-      <div class="tl-title">mpesa-mcp ships on PyPI</div>
-      <div class="tl-body">First MCP server for East Africa. Model Context Protocol was weeks old — mpesa-mcp made M-PESA the first African payment API natively accessible to AI agents. 1,200+ downloads across 14 countries without any marketing.</div>
+    <div class="research-card reveal">
+      <div class="research-badge">arXiv:2305.19118 · 2023</div>
+      <div class="research-name">hakiyangu</div>
+      <div class="research-desc">Multi-agent debate (Liang et al.) applied to constitutional rights education — government-position vs. citizen-position argument, adversarial format, Swahili and English.</div>
+      <a href="https://github.com/gabrielmahia/hakiyangu" class="research-link" target="_blank">github.com/gabrielmahia/hakiyangu →</a>
     </div>
-    <div class="tl-item reveal">
-      <div class="tl-dot"></div>
-      <div class="tl-date">2025 — Protocol Trifecta</div>
-      <div class="tl-title">MCP + A2A + Google ADK — all three, first in region</div>
-      <div class="tl-body">kenya-a2a and kenya-adk implemented within weeks of their global launches. First documented engineer in East Africa to have deployed all three major AI agent protocols. Portfolio crosses 50 repositories. DPGA submissions filed for mpesa-mcp and wapimaji-mcp.</div>
+    <div class="research-card reveal">
+      <div class="research-badge">World Bank RPW · 2025</div>
+      <div class="research-name">remit-mcp</div>
+      <div class="research-desc">Remittance corridor comparison addressing the gap between typical Kenya-corridor fees and the SDG 10.c target of 3% by 2030.</div>
+      <a href="https://github.com/gabrielmahia/remit-mcp" class="research-link" target="_blank">github.com/gabrielmahia/remit-mcp →</a>
     </div>
-    <div class="tl-item reveal">
-      <div class="tl-dot"></div>
-      <div class="tl-date">2026 — 23 MCP Servers</div>
-      <div class="tl-title">Complete coordination infrastructure stack shipped</div>
-      <div class="tl-body">Every major domain covered in 23 production MCP servers: payments, credit, insurance, markets, reputation, remittance, tax, investment, water, energy, transport, land, health, mental health, education, labour, agriculture, community finance, housing, civic information, environment — plus the unified civic-agent-kit SDK. All on PyPI via OIDC. All MIT licensed. All Glama-listed. The full stack covers economic, physical, social, and civic layers of coordination infrastructure for East Africa.</div>
+    <div class="research-card reveal">
+      <div class="research-badge">arXiv:2408.17216 · WHO 2022</div>
+      <div class="research-name">afyanipoa-ai</div>
+      <div class="research-desc">Federated AI methodology shown to run on Raspberry Pi-class devices, applied to a Swahili co-pilot for Community Health Workers operating in low-connectivity areas.</div>
+      <a href="https://github.com/gabrielmahia/afyanipoa" class="research-link" target="_blank">github.com/gabrielmahia/afyanipoa-ai →</a>
     </div>
-    <div class="tl-item reveal">
-      <div class="tl-dot"></div>
-      <div class="tl-date">2026 — Research-Backed</div>
-      <div class="tl-title">5 arXiv-acknowledged firsts</div>
-      <div class="tl-body">Every protocol position (MCP, A2A, ADK for East Africa) is supported by documented repository artifacts — not self-description. Masakhane grant application submitted: Swahili-native AI agents for financial inclusion, civic accountability, and education. DPGA submissions: mpesa-mcp (GID0093741) and wapimaji-mcp (GID0093744) under review.</div>
-    </div>
-    <div class="tl-item reveal">
-      <div class="tl-dot"></div>
-      <div class="tl-date">2026 — 1st World Gaps, Filled</div>
-      <div class="tl-title">Africa-localized equivalents of global platforms</div>
-      <div class="tl-body">kra-mcp (TurboTax/HMRC equivalent), faida-mcp (Fidelity/Schwab), kilimo-mcp (Climate Corp), haki-ya-kazi-mcp (ACAS/NLRB), afya-ya-akili-mcp (BetterHelp/Mind) — each a 1st-world institutional function repackaged for Kenya context, open-source, and MCP-native. The vision: institutional-grade decision support for every Kenyan in under 120 seconds.</div>
-    </div>
-  </div></section>
+  </div>
+</section>
 
 <!-- PLATFORMS -->
 <section class="platform-section">
@@ -631,66 +485,60 @@ footer a:hover { color: var(--gold); }
     <a href="https://github.com/gabrielmahia" target="_blank" class="platform-card">
       <div class="platform-icon">🐙</div>
       <div class="platform-name">GitHub</div>
-      <div class="platform-detail">@gabrielmahia · 130+ repos</div>
+      <div class="platform-detail">@gabrielmahia</div>
     </a>
     <a href="https://huggingface.co/gmahia" target="_blank" class="platform-card">
       <div class="platform-icon">🤗</div>
       <div class="platform-name">HuggingFace</div>
-      <div class="platform-detail">@gmahia · 4 datasets</div>
+      <div class="platform-detail">@gmahia</div>
     </a>
     <a href="https://pypi.org/user/gmahia" target="_blank" class="platform-card">
       <div class="platform-icon">📦</div>
       <div class="platform-name">PyPI</div>
-      <div class="platform-detail">gmahia · mpesa-mcp v0.2.0 · 22 tools</div>
+      <div class="platform-detail">gmahia</div>
     </a>
     <a href="https://www.kaggle.com/gmahia" target="_blank" class="platform-card">
       <div class="platform-icon">📊</div>
       <div class="platform-name">Kaggle</div>
-      <div class="platform-detail">@gmahia · 5 notebooks</div>
+      <div class="platform-detail">@gmahia</div>
     </a>
     <a href="https://dev.to/gabrielmahia" target="_blank" class="platform-card">
       <div class="platform-icon">📝</div>
       <div class="platform-name">Dev.to</div>
-      <div class="platform-detail">@gabrielmahia · 11 articles</div>
+      <div class="platform-detail">@gabrielmahia</div>
     </a>
     <a href="https://glama.ai/mcp/servers/gabrielmahia/mpesa-mcp" target="_blank" class="platform-card">
       <div class="platform-icon">⚡</div>
       <div class="platform-name">Glama</div>
-      <div class="platform-detail">mpesa-mcp · wapimaji-mcp · civic-agent-kit</div>
+      <div class="platform-detail">mpesa-mcp</div>
     </a>
   </div>
 </section>
 
-
 <!-- CREDENTIALS -->
 <section class="platform-section" id="credentials">
   <div class="section-kicker">Education</div>
-  <h2 class="section-title">ML Foundations — 2020</h2>
+  <h2 class="section-title">ML Foundations</h2>
   <div class="platform-grid">
     <a href="https://coursera.org/verify/specialization/Q8DEN62H7M4Z" target="_blank" class="platform-card">
       <div class="platform-icon">🧠</div>
       <div class="platform-name">Deep Learning Specialization</div>
-      <div class="platform-detail">DeepLearning.AI · Andrew Ng · Jul 2020 · 5 courses</div>
+      <div class="platform-detail">DeepLearning.AI · Andrew Ng · 2020</div>
     </a>
     <a href="https://coursera.org/verify/NQVX3CBBGC2B" target="_blank" class="platform-card">
       <div class="platform-icon">📐</div>
       <div class="platform-name">Machine Learning</div>
-      <div class="platform-detail">Stanford Online · Andrew Ng · Jul 2020 · Credential NQVX3CBBGC2B</div>
+      <div class="platform-detail">Stanford Online · Andrew Ng · 2020</div>
     </a>
   </div>
-  <p style="text-align:center;font-size:0.8rem;color:rgba(255,255,255,0.4);margin-top:16px">
-    Both credentials issued July 2020 — 5 years before the protocol firsts.
-    Verify: <a href="https://coursera.org/verify/specialization/Q8DEN62H7M4Z" target="_blank" style="color:var(--amber)">Q8DEN62H7M4Z</a> ·
-    <a href="https://coursera.org/verify/NQVX3CBBGC2B" target="_blank" style="color:var(--amber)">NQVX3CBBGC2B</a>
-  </p>
 </section>
 
 <!-- CTA -->
 <section class="cta-section">
   <h2>Build with this infrastructure</h2>
-  <p>Every tool is open-source, documented, and built to be extended. Start with mpesa-mcp and add the East African domain layer your product needs.</p>
+  <p>Every tool is open-source, documented, and built to be extended. Start with mpesa-mcp and add the domain layer your project needs.</p>
   <div class="cta-links">
-    <a href="https://github.com/gabrielmahia/kenya-mcp-hub" target="_blank" class="btn-primary">Kenya MCP Hub →</a>
+    <a href="https://github.com/gabrielmahia/mpesa-mcp" target="_blank" class="btn-primary">mpesa-mcp →</a>
     <a href="https://github.com/gabrielmahia" target="_blank" class="btn-outline">Browse all repos ↗</a>
     <a href="mailto:contact@aikungfu.dev" class="btn-outline">Collaborate ↗</a>
   </div>
@@ -707,7 +555,6 @@ footer a:hover { color: var(--gold); }
 </footer>
 
 <script>
-// Intersection observer for scroll reveals
 const observer = new IntersectionObserver(entries => {
   entries.forEach((e, i) => {
     if (e.isIntersecting) {
@@ -718,54 +565,49 @@ const observer = new IntersectionObserver(entries => {
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
 
-  <!-- Data sovereignty callout — added June 2026 -->
-  <section style="background:#1a1a2e;color:#e0e0e0;padding:2rem;text-align:center;font-size:0.95rem;">
-    <strong style="color:#00d4aa;">Why local-first?</strong>
-    Across the Global South, communities face pressure to hand over health records, land data, and civic information
-    as conditions for receiving services or funding.
-    This infrastructure is built so communities can deliver AI-powered services <em>without</em> surrendering data sovereignty.
-    <br><br>
-    <a href="https://github.com/gabrielmahia/offline-mcp" style="color:#00d4aa;">offline-mcp</a> ·
-    <a href="https://github.com/gabrielmahia/sii-stack" style="color:#00d4aa;">sii-stack</a> ·
-    <a href="https://github.com/gabrielmahia/nairobi-stack" style="color:#00d4aa;">nairobi-stack</a>
-  </section>
+<!-- Data sovereignty -->
+<section class="sovereignty-section">
+  <strong>Why local-first?</strong>
+  Across the Global South, communities face pressure to hand over health records, land data, and civic information
+  as conditions for receiving services or funding.
+  This infrastructure is built so communities can run AI-powered services <em>without</em> surrendering data sovereignty.
+  <br><br>
+  <a href="https://github.com/gabrielmahia/offline-mcp">offline-mcp</a> ·
+  <a href="https://github.com/gabrielmahia/africa-coord-bus">africa-coord-bus</a>
+</section>
 
-  <!-- What Gets Built On This — Scenario Section -->
-  <section class="scenario-section" style="max-width:800px;margin:3rem auto;padding:0 1.5rem;">
-    <h2 style="font-size:1.6rem;font-weight:700;margin-bottom:0.5rem;">What Gets Built On This</h2>
-    <p style="color:#666;margin-bottom:2rem;">These are not hypothetical. They are the trains for which these rails were built.</p>
+<!-- What Gets Built On This -->
+<section class="scenario-section" style="max-width:800px;margin:3rem auto;padding:0 1.5rem;">
+  <h2 style="font-size:1.6rem;font-weight:700;margin-bottom:0.5rem;">What Gets Built On This</h2>
+  <p style="color:#666;margin-bottom:2rem;">Concrete scenarios these tools are built to support.</p>
 
-    <div class="scenario" style="border-left:3px solid #2563eb;padding:1rem 1.5rem;margin-bottom:1.5rem;background:#f8faff;">
-      <strong>The rural health worker</strong> — Kisumu, offline, Swahili<br>
-      <span style="color:#555;">Runs afya-mcp + offline-mcp on a tablet. No internet. Drug interaction query answered in Swahili in 3 seconds. No data leaves the tablet.</span>
-    </div>
+  <div class="scenario" style="border-color:#2563eb;background:#f8faff;">
+    <strong>The rural health worker</strong> — Kisumu, offline, Swahili<br>
+    <span style="color:#555;">Runs afya-mcp + offline-mcp on a tablet. No internet. Drug interaction query answered in Swahili in seconds. No data leaves the tablet.</span>
+  </div>
 
-    <div class="scenario" style="border-left:3px solid #16a34a;padding:1rem 1.5rem;margin-bottom:1.5rem;background:#f0fdf4;">
-      <strong>The smallholder farmer</strong> — Nakuru, WhatsApp<br>
-      <span style="color:#555;">Sends a voice note asking whether to sell maize now or hold. soko-mcp returns prices across 8 East African markets with a sell/hold recommendation. In Swahili.</span>
-    </div>
+  <div class="scenario" style="border-color:#16a34a;background:#f0fdf4;">
+    <strong>The smallholder farmer</strong> — Nakuru<br>
+    <span style="color:#555;">Sends a voice note asking whether to sell maize now or hold. Gets prices across multiple East African markets with a sell/hold recommendation, in Swahili.</span>
+  </div>
 
-    <div class="scenario" style="border-left:3px solid #7c3aed;padding:1rem 1.5rem;margin-bottom:1.5rem;background:#faf5ff;">
-      <strong>The Kenyan diaspora member</strong> — Manassas, Virginia<br>
-      <span style="color:#555;">Manages a land dispute in Kiambu from 8,000 miles away using ardhi-mcp + familia-mcp + fomu-mcp. Legal path, draft letter, required documents — no Kenyan lawyer needed for the preliminary steps.</span>
-    </div>
+  <div class="scenario" style="border-color:#7c3aed;background:#faf5ff;">
+    <strong>The Kenyan diaspora member</strong> — Manassas, Virginia<br>
+    <span style="color:#555;">Manages a land dispute in Kiambu from abroad using ardhi-mcp + familia-mcp + fomu-mcp. Legal path, draft letter, required documents.</span>
+  </div>
 
-    <div class="scenario" style="border-left:3px solid #ea580c;padding:1rem 1.5rem;margin-bottom:1.5rem;background:#fff7ed;">
-      <strong>The first-time SACCO member</strong> — boda boda rider, Nairobi<br>
-      <span style="color:#555;">jumuia-mcp finds SASRA-regulated SACCOs matching his income, explains obligations, and onboards him to cooperative finance. In Swahili. On his phone.</span>
-    </div>
+  <div class="scenario" style="border-color:#ea580c;background:#fff7ed;">
+    <strong>The first-time SACCO member</strong> — boda boda rider, Nairobi<br>
+    <span style="color:#555;">jumuia-mcp finds SASRA-regulated SACCOs matching his income, explains obligations, and onboards him to cooperative finance. In Swahili, on his phone.</span>
+  </div>
+</section>
 
-    <div style="text-align:center;margin-top:2rem;">
-      <a href="https://github.com/gabrielmahia/nairobi-stack" style="background:#1d4ed8;color:white;padding:0.75rem 1.5rem;border-radius:6px;text-decoration:none;font-weight:600;">Browse the Rails →</a>
-    </div>
-  </section>
-
-  <!-- Build Rails Not Trains -->
-  <section class="philosophy-section" style="max-width:800px;margin:3rem auto;padding:2rem 1.5rem;background:#1e293b;border-radius:12px;color:white;">
-    <h2 style="font-size:1.4rem;font-weight:700;margin-bottom:1rem;color:#93c5fd;">Build Rails, Not Trains</h2>
-    <p style="color:#cbd5e1;line-height:1.7;">TCP/IP didn't control the internet — it enabled it. M-Pesa didn't control mobile money — it enabled 50 million transactions a month. The 31 MCP servers in this portfolio are rails. They give AI agents structured, authenticated, locally-processed access to Africa's institutional layer. The trains — health tools, civic assistants, agricultural bots, financial guides — are yours to build.</p>
-    <p style="color:#94a3b8;margin-top:1rem;font-size:0.9rem;">MIT licensed · pip installable · PyPI · Glama · Smithery</p>
-  </section>
+<!-- Build Rails Not Trains -->
+<section class="philosophy-section" style="max-width:800px;margin:3rem auto;padding:2rem 1.5rem;background:#1e293b;border-radius:12px;color:white;">
+  <h2 style="font-size:1.4rem;font-weight:700;margin-bottom:1rem;color:#93c5fd;">Build Rails, Not Trains</h2>
+  <p style="color:#cbd5e1;line-height:1.7;">TCP/IP didn't control the internet — it enabled it. These MCP servers are rails: structured, authenticated, locally-processable access to East Africa's institutional layer. The trains — health tools, civic assistants, agricultural bots, financial guides — are yours to build.</p>
+  <p style="color:#94a3b8;margin-top:1rem;font-size:0.9rem;">MIT licensed · pip installable</p>
+</section>
 
 </body>
 </html>
