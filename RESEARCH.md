@@ -40,7 +40,7 @@ attacks from 73.2% to 8.7%. Architecture basis for ops-shield defense design.
 
 **OWASP MCP Top 10** (v0.1 Beta, 2025)  
 Standard security framework for MCP deployments. Used as deployment checklist
-across all 31 MCP servers in this portfolio.
+across the MCP servers in this portfolio.
 
 ---
 
