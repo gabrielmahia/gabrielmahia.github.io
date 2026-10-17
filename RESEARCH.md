@@ -50,7 +50,7 @@ across the MCP servers in this portfolio.
 Only 4 African languages receive consistent NLP support (Amharic, Swahili,
 Afrikaans, Malagasy). 98%+ of African languages have no AI coverage.
 Civic and healthcare domains have the most critical accuracy requirements
-and the most data gaps. Frames the strategic value of `swahili-civic-nlp`.
+and the most data gaps. Frames the strategic value of Swahili civic language data.
 
 **Hussen et al., arXiv:2506.02280** (2025)  
 *The State of LLMs for African Languages: Progress and Challenges*  
@@ -97,7 +97,7 @@ understanding. Frames the responsible design requirements across `mpesa-mcp`,
 **DPGA 2025 DPG Ecosystem Report**  
 DPG Standard updated 2025 to include AI systems. 2026 focus: sourcing AI DPGs
 for SDG-relevant domains including agriculture and climate. Directly informs
-`mpesa-mcp` (GID0093741), `swahili-civic-nlp` (GID0093743) submissions.
+`mpesa-mcp` (GID0093741) submission.
 
 **Stanford HAI 2026 AI Index**  
 AI agent deployment still in single digits across business functions globally.
